@@ -29,9 +29,11 @@
         android:textStyle="normal|bold" />
 
     <TextView
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="150dp"
+        android:layout_height="75dp"
         android:id="@+id/dateTextView"
+        android:textSize="24sp"
+        android:fontFamily="sans-serif"
         android:layout_below="@+id/welcomeMessage2"
         android:layout_centerHorizontal="true" />
 

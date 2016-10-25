@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.icu.text.SimpleDateFormat;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
@@ -11,10 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.ActivityRecognition;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity
         implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
@@ -34,6 +38,18 @@ public class MainActivity extends AppCompatActivity
         welcomeScreenMessage2.setTypeface(typeface);
 
 
+        Calendar c = Calendar.getInstance();
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
+        String currentDateTimeString = simpleDateFormat.format(c.getTime());
+
+        Toast.makeText(this,currentDateTimeString,Toast.LENGTH_SHORT).show();
+
+        TextView dateTextView = (TextView) findViewById(R.id.dateTextView);
+        dateTextView.setText(currentDateTimeString);
+        dateTextView.setTypeface(typeface);
+
+
         //After Implementing the interfaces for GoogleApiClient, initializing the GoogleApiClient.
         //Also connecting to Google Play Services.
         mApiClient =  new GoogleApiClient.Builder(this)
@@ -43,6 +59,8 @@ public class MainActivity extends AppCompatActivity
                 .build();
 
         mApiClient.connect();
+
+
     }
 
     //implementing the required interfaces for GoogleApiClient
