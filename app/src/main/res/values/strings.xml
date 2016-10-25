@@ -1,6 +1,10 @@
 <resources>
-    <string name="app_name">SensorSimulation</string>
+    <string name="app_name">Sensor Simulation</string>
 
     <!--Google API Key-->
     <string name="google_api_key">AIzaSyAx-zdg5VLhDfV-XUbM9Rf0odQ_s9NtRf8</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="welcome_message">KEEP CALM !!!!</string>
+    <string name= "welcome_message2">YOU ARE USING OUR APP</string>
 </resources>

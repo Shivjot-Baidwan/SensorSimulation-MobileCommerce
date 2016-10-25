@@ -1,11 +1,16 @@
 package com.mobilecommerce.sensorsimulation;
 
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -19,7 +24,15 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.fragment_welcome_screen);
+
+        TextView welcomeScreenMessage1 = (TextView) findViewById(R.id.welcomeMessage1);
+        TextView welcomeScreenMessage2 = (TextView) findViewById(R.id.welcomeMessage2);
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/font1.ttf");
+        welcomeScreenMessage1.setTypeface(typeface);
+        welcomeScreenMessage2.setTypeface(typeface);
+
 
         //After Implementing the interfaces for GoogleApiClient, initializing the GoogleApiClient.
         //Also connecting to Google Play Services.
@@ -52,4 +65,12 @@ public class MainActivity extends AppCompatActivity
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_welcome,menu);
+        return true;
+
+    }
+
 }
