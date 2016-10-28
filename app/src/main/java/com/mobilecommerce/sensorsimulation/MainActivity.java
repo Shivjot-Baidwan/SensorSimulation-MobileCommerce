@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity
 
         TextView dateTextView = (TextView) findViewById(R.id.dateTextView);
         dateTextView.setText(currentDateTimeString);
-        dateTextView.setTypeface(typeface);
+        //dateTextView.setTypeface(typeface);
 
 
         //After Implementing the interfaces for GoogleApiClient, initializing the GoogleApiClient.
@@ -59,7 +60,6 @@ public class MainActivity extends AppCompatActivity
                 .build();
 
         mApiClient.connect();
-
 
     }
 
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity
     //implementing the required interfaces for GoogleApiClient
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
+    Log.d("FAILURE", "failure");
     }
 
     @Override
