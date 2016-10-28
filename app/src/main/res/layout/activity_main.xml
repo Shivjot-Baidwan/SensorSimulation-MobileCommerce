@@ -16,4 +16,6 @@
         android:layout_weight="1"
         android:name="com.mobilecommerce.sensorsimulation.WelcomeScreenFragment"
         android:id="@+id/welcome_screen_fragment" />
+
+
 </RelativeLayout>

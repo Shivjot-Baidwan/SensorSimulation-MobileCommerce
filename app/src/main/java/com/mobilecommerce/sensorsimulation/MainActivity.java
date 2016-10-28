@@ -10,6 +10,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.TextView;
@@ -37,6 +39,12 @@ public class MainActivity extends AppCompatActivity
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/font1.ttf");
         welcomeScreenMessage1.setTypeface(typeface);
         welcomeScreenMessage2.setTypeface(typeface);
+
+        getSupportActionBar().setTitle(Html.fromHtml("<font color = '#0000b7'>SENSE ME</font"));
+        
+       // Toolbar mainToolbar = (Toolbar) findViewById(R.id.toolbar);
+        //setSupportActionBar(mainToolbar);
+        //mainToolbar.setTitleTextColor(getResources().getColor(R.color.textColorPrimary));
 
 
         Calendar c = Calendar.getInstance();
