@@ -1,22 +1,27 @@
+/*
+Authors: Venus Pathak - 7972526
+         Shivjot Baidwan - 8028412
+*/
+
 package com.mobilecommerce.sensorsimulation;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.icu.text.SimpleDateFormat;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.ActivityRecognition;
@@ -27,6 +32,7 @@ public class MainActivity extends AppCompatActivity
         implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
     public GoogleApiClient mApiClient;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +47,8 @@ public class MainActivity extends AppCompatActivity
         welcomeScreenMessage2.setTypeface(typeface);
 
         getSupportActionBar().setTitle(Html.fromHtml("<font color = '#0000b7'>SENSE ME</font"));
-        
-       // Toolbar mainToolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(mainToolbar);
-        //mainToolbar.setTitleTextColor(getResources().getColor(R.color.textColorPrimary));
+
+
 
 
         Calendar c = Calendar.getInstance();
@@ -58,22 +62,35 @@ public class MainActivity extends AppCompatActivity
         dateTextView.setText(currentDateTimeString);
         //dateTextView.setTypeface(typeface);
 
+        UserMovementDatabase userMovementDatabase = new UserMovementDatabase("time","WALKING");
+
+        MyDatabaseHandler myDatabaseHandler = new MyDatabaseHandler(this, null, null, 1);
+        myDatabaseHandler.addUserMovement(userMovementDatabase, this);
+
+        myDatabaseHandler.viewAllRecords();
+        myDatabaseHandler.printUserMovementRecords();
 
         //After Implementing the interfaces for GoogleApiClient, initializing the GoogleApiClient.
         //Also connecting to Google Play Services.
+
         mApiClient =  new GoogleApiClient.Builder(this)
+
                 .addApi(ActivityRecognition.API)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
+
                 .build();
 
         mApiClient.connect();
+
+
 
     }
 
     //implementing the required interfaces for GoogleApiClient
     @Override
     public void onConnected(@Nullable Bundle bundle){
+        Log.d("FAILURE", "failure");
         Intent intent = new Intent(this, ActivityRecognizedService.class);
         PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(mApiClient, 3000, pendingIntent);

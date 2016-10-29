@@ -1,3 +1,8 @@
+/*
+Authors: Venus Pathak - 7972526
+         Shivjot Baidwan - 8028412
+*/
+
 package com.mobilecommerce.sensorsimulation;
 
 import android.app.IntentService;
@@ -5,15 +10,10 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
-
 import com.google.android.gms.location.ActivityRecognitionResult;
 import com.google.android.gms.location.DetectedActivity;
-
 import java.util.List;
 
-/**
- * Created by Shivu on 2016-10-19.
- */
 
 public class ActivityRecognizedService extends IntentService {
 
