@@ -11,6 +11,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.graphics.drawable.AnimationDrawable;
 import android.icu.text.SimpleDateFormat;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,6 +21,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity
         implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
     public GoogleApiClient mApiClient;
+    private ImageView animationImages;
 
 
     @Override
@@ -53,15 +56,24 @@ public class MainActivity extends AppCompatActivity
 
         Calendar c = Calendar.getInstance();
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd  HH:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy  hh:mm a ");
         String currentDateTimeString = simpleDateFormat.format(c.getTime());
 
         Toast.makeText(this,currentDateTimeString,Toast.LENGTH_SHORT).show();
 
         TextView dateTextView = (TextView) findViewById(R.id.dateTextView);
         dateTextView.setText(currentDateTimeString);
-        //dateTextView.setTypeface(typeface);
+        animationImages = (ImageView) findViewById(R.id.animationView);
 
+        animationImages.post(new Runnable() {
+            @Override
+            public void run() {
+                ((AnimationDrawable) animationImages.getBackground()).start();
+            }
+        });
+
+
+        /*
         UserMovementDatabase userMovementDatabase = new UserMovementDatabase("time","WALKING");
 
         MyDatabaseHandler myDatabaseHandler = new MyDatabaseHandler(this, null, null, 1);
@@ -69,6 +81,7 @@ public class MainActivity extends AppCompatActivity
 
         myDatabaseHandler.viewAllRecords();
         myDatabaseHandler.printUserMovementRecords();
+        */
 
         //After Implementing the interfaces for GoogleApiClient, initializing the GoogleApiClient.
         //Also connecting to Google Play Services.

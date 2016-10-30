@@ -1,7 +1,7 @@
 /*
 Authors: Venus Pathak - 7972526
          Shivjot Baidwan - 8028412
-*/
+
 
 package com.mobilecommerce.sensorsimulation;
 
@@ -44,3 +44,4 @@ public class UserMovementDatabase {
     }
 
 }
+*/
