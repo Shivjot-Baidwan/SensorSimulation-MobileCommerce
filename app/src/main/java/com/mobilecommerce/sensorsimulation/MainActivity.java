@@ -5,17 +5,13 @@ Authors: Venus Pathak - 7972526
 
 package com.mobilecommerce.sensorsimulation;
 
-import android.Manifest;
-import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.icu.text.SimpleDateFormat;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -35,6 +31,8 @@ public class MainActivity extends AppCompatActivity
 
     public GoogleApiClient mApiClient;
     private ImageView animationImages;
+    private TextView welcomeScreenMessage1,welcomeScreenMessage2,walkingScreenMessage,runningScreenMessage,
+            stillScreenMessage,drivingScreenMessage;
 
 
     @Override
@@ -42,12 +40,21 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_welcome_screen);
 
-        TextView welcomeScreenMessage1 = (TextView) findViewById(R.id.welcomeMessage1);
-        TextView welcomeScreenMessage2 = (TextView) findViewById(R.id.welcomeMessage2);
+        welcomeScreenMessage1 = (TextView) findViewById(R.id.welcomeMessage1);
+        welcomeScreenMessage2 = (TextView) findViewById(R.id.welcomeMessage2);
+        walkingScreenMessage = (TextView) findViewById(R.id.walkingScreenTextView);
+        runningScreenMessage = (TextView) findViewById(R.id.runningScreenTextView);
+        stillScreenMessage = (TextView) findViewById(R.id.stillScreenTextView);
+        drivingScreenMessage = (TextView) findViewById(R.id.drivingScreenTextView);
+
 
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/font1.ttf");
         welcomeScreenMessage1.setTypeface(typeface);
         welcomeScreenMessage2.setTypeface(typeface);
+        walkingScreenMessage.setTypeface(typeface);
+        runningScreenMessage.setTypeface(typeface);
+        stillScreenMessage.setTypeface(typeface);
+        drivingScreenMessage.setTypeface(typeface);
 
         getSupportActionBar().setTitle(Html.fromHtml("<font color = '#0000b7'>SENSE ME</font"));
 

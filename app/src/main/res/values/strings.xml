@@ -4,7 +4,14 @@
     <!--Google API Key-->
     <string name="google_api_key">AIzaSyAx-zdg5VLhDfV-XUbM9Rf0odQ_s9NtRf8</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="welcome_message">KEEP CALM !!!!</string>
     <string name="welcome_message2">YOU ARE USING OUR APP</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="walking_screen_message">You are walking. It is the best possible exercise. </string>
+    <string name="running_screen_message">You are running. Do NOT calm. Just carry on</string>
+    <string name="still_screen_message">You are standing still. Do something</string>
+    <string name="driving_screen_message">Concentrate on the driving.. vrummmmm.. vrumm....</string>
+
+
 </resources>
