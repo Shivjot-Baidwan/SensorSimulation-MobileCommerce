@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity
         stillScreenMessage = (TextView) findViewById(R.id.stillScreenTextView);
         drivingScreenMessage = (TextView) findViewById(R.id.drivingScreenTextView);
 
-
+/*
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/font1.ttf");
         welcomeScreenMessage1.setTypeface(typeface);
         welcomeScreenMessage2.setTypeface(typeface);
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity
         runningScreenMessage.setTypeface(typeface);
         stillScreenMessage.setTypeface(typeface);
         drivingScreenMessage.setTypeface(typeface);
-
+*/
         getSupportActionBar().setTitle(Html.fromHtml("<font color = '#0000b7'>SENSE ME</font"));
 
 
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity
     //implementing the required interfaces for GoogleApiClient
     @Override
     public void onConnected(@Nullable Bundle bundle){
-        Log.d("FAILURE", "failure");
+        Log.d("Success: ", "Connected to GoogleAPIClient");
         Intent intent = new Intent(this, ActivityRecognizedService.class);
         PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(mApiClient, 3000, pendingIntent);
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity
     //implementing the required interfaces for GoogleApiClient
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-    Log.d("FAILURE", "failure");
+    Log.d("Failure: ", "Failed to connect to GoogleAPIClient");
     }
 
     @Override
