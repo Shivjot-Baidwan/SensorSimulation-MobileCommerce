@@ -30,9 +30,17 @@ public class MainActivity extends AppCompatActivity
         implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
     public GoogleApiClient mApiClient;
+    public static final String inVehicleFragmentToLoad = "com.mobilecommerce.sensorsimulation.DrivingScreenFragment";
+    public static final String runningFragmentToLoad = "com.mobilecommerce.sensorsimulation.RunningScreenFragment";
+    public static final String stillFragmentToLoad = "com.mobilecommerce.sensorsimulation.StillScreenFragment";
+    public static final String walkingFragmentToLoad = "com.mobilecommerce.sensorsimulation.WalkingScreenFragment";
+
     private ImageView animationImages;
     private TextView welcomeScreenMessage1,welcomeScreenMessage2,walkingScreenMessage,runningScreenMessage,
             stillScreenMessage,drivingScreenMessage;
+
+    public enum FragmentToLoad{APP_IN_VEHICLE, APP_RUNNING, APP_STILL, APP_WALKING}
+
 
 
     @Override
@@ -44,7 +52,7 @@ public class MainActivity extends AppCompatActivity
         welcomeScreenMessage2 = (TextView) findViewById(R.id.welcomeMessage2);
         walkingScreenMessage = (TextView) findViewById(R.id.walkingScreenTextView);
         runningScreenMessage = (TextView) findViewById(R.id.runningScreenTextView);
-        stillScreenMessage = (TextView) findViewById(R.id.stillScreenTextView);
+        //stillScreenMessage = (TextView) findViewById(R.id.stillScreenTextView);
         drivingScreenMessage = (TextView) findViewById(R.id.drivingScreenTextView);
 
 /*
