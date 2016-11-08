@@ -14,13 +14,19 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
 public class StillActivity extends AppCompatActivity {
 
-    MediaPlayer mediaPlayer;
+    //MediaPlayer mediaPlayer;
+    private static int position = 0;
+
+    private ImageButton playButton, pauseButton, stopButton, nextSongButton, previousSongButton;
+    private MediaPlayer soundPlayer;
+    private Integer[] songs = new Integer[6];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +34,76 @@ public class StillActivity extends AppCompatActivity {
         setContentView(R.layout.activity_still);
 
         createAndAddAFragment();
+        load_Songs();
 
+        playButton = (ImageButton) findViewById(R.id.playButton);
+        pauseButton = (ImageButton) findViewById(R.id.pauseButton);
+        stopButton = (ImageButton) findViewById(R.id.stopButton);
+        nextSongButton = (ImageButton) findViewById(R.id.nextSongButton);
+        previousSongButton = (ImageButton) findViewById(R.id.previousSongButton);
+
+        playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Error", "Error on Create ");
+                soundPlayer = MediaPlayer.create(getApplicationContext(), songs[position]);
+                soundPlayer.start();
+            }
+        });
+        pauseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (soundPlayer.isPlaying()) {
+                    soundPlayer.pause();
+                } else
+                    soundPlayer.start();
+
+            }
+        });
+        stopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                soundPlayer.stop();
+                position = 0;
+                soundPlayer = MediaPlayer.create(getApplicationContext(), songs[position]);
+
+            }
+        });
+        nextSongButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (soundPlayer.isPlaying()) {
+                    soundPlayer.stop();
+                }
+                if (position == 5) {
+                    position = 0;
+                } else {
+                    position++;
+                }
+                soundPlayer = MediaPlayer.create(getApplicationContext(), songs[position]);
+                soundPlayer.start();
+            }
+        });
+
+        previousSongButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (soundPlayer.isPlaying()) {
+                    soundPlayer.stop();
+                }
+                if (position == 0) {
+                    position = 0;
+                } else {
+                    position--;
+                }
+                soundPlayer = MediaPlayer.create(getApplicationContext(), songs[position]);
+                soundPlayer.start();
+            }
+        });
+
+
+
+        /*
         Button stopMusic = (Button) findViewById(R.id.musicStopButton);
 
         stopMusic.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +122,7 @@ public class StillActivity extends AppCompatActivity {
                     exception.toString();
                 }
             }
-        });
+        }); */
     }
 
     private void createAndAddAFragment() {
@@ -67,13 +142,13 @@ public class StillActivity extends AppCompatActivity {
 
         fragmentTransaction.commit();// using commit here to make sure that everything we did above actually happens.
     }
-
+    /*
     public void playMusic(View view) {
         mediaPlayer = MediaPlayer.create(this, R.raw.how_deep_is_your_love);
         mediaPlayer.start();
     }
 
-    /*
+
         public void stopMusic(View view){
             try {
                 if (mediaPlayer != null) {
@@ -88,7 +163,7 @@ public class StillActivity extends AppCompatActivity {
             }
     //        mediaPlayer.stop();
         }
-    */
+
     public void playNextSong(View view) {
         try {
             Log.d("abc", "abc");
@@ -105,6 +180,16 @@ public class StillActivity extends AppCompatActivity {
         } catch (Exception exception) {
             exception.toString();
         }
+
+    } */
+
+    public void load_Songs() {
+        songs[0] = R.raw.calvin_harris;
+        songs[1] = R.raw.charda_seeyal;
+        songs[2] = R.raw.creez;
+        songs[3] = R.raw.sendmylove;
+        songs[4] = R.raw.how_deep_is_your_love;
+        songs[5] = R.raw.this_is_what_you_came_for;
 
     }
 

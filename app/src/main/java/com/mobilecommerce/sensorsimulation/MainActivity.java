@@ -41,8 +41,6 @@ public class MainActivity extends AppCompatActivity
 
     public enum FragmentToLoad{APP_IN_VEHICLE, APP_RUNNING, APP_STILL, APP_WALKING}
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,9 +108,6 @@ public class MainActivity extends AppCompatActivity
                 .build();
 
         mApiClient.connect();
-
-
-
     }
 
     //implementing the required interfaces for GoogleApiClient
@@ -122,13 +117,11 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(this, ActivityRecognizedService.class);
         PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(mApiClient, 3000, pendingIntent);
-
     }
 
     //implementing the required interfaces for GoogleApiClient
     @Override
     public void onConnectionSuspended(int i) {
-
     }
 
     //implementing the required interfaces for GoogleApiClient
@@ -141,7 +134,6 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_welcome,menu);
         return true;
-
     }
 
 }
