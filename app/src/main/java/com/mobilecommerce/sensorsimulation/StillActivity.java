@@ -11,13 +11,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
 
 public class StillActivity extends AppCompatActivity {
 
@@ -36,7 +31,7 @@ public class StillActivity extends AppCompatActivity {
         createAndAddAFragment();
         load_Songs();
 
-        playButton = (ImageButton) findViewById(R.id.playButton);
+        playButton = (ImageButton) findViewById(R.id.playButtonRunning);
         pauseButton = (ImageButton) findViewById(R.id.pauseButton);
         stopButton = (ImageButton) findViewById(R.id.stopButton);
         nextSongButton = (ImageButton) findViewById(R.id.nextSongButton);

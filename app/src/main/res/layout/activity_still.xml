@@ -28,7 +28,7 @@
         android:src="@drawable/stillimage"
         android:layout_gravity="center|bottom"
         android:layout_marginBottom="45dp"
-        android:layout_above="@+id/playButton"
+        android:layout_above="@+id/playButtonRunning"
         android:layout_centerHorizontal="true" />
 
     <ImageButton
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/ic_media_play"
         android:layout_marginLeft="18dp"
-        android:id="@+id/playButton"
+        android:id="@+id/playButtonRunning"
         android:layout_marginBottom="49dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
@@ -47,14 +47,14 @@
         app:srcCompat="@android:drawable/ic_media_pause"
         android:layout_marginLeft="24dp"
         android:id="@+id/pauseButton"
-        android:layout_alignTop="@+id/playButton"
-        android:layout_toEndOf="@+id/playButton"
+        android:layout_alignTop="@+id/playButtonRunning"
+        android:layout_toEndOf="@+id/playButtonRunning"
         android:layout_marginStart="11dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/btn_dialog"
+        android:src="@drawable/cast_ic_mini_controller_stop"
         android:layout_marginLeft="19dp"
         android:id="@+id/stopButton"
         android:layout_alignTop="@+id/pauseButton"

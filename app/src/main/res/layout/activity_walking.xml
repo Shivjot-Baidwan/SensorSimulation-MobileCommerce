@@ -15,11 +15,61 @@
         android:textStyle="normal|bold"
         android:textAlignment="center" />
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_media_play"
+        android:layout_marginLeft="18dp"
+        android:id="@+id/playButtonWalking"
+        android:layout_marginBottom="49dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_media_pause"
+        android:layout_marginLeft="24dp"
+        android:id="@+id/pauseButtonWalking"
+        android:layout_alignTop="@+id/playButtonWalking"
+        android:layout_toEndOf="@+id/playButtonWalking"
+        android:layout_marginStart="11dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cast_ic_mini_controller_stop"
+        android:layout_marginLeft="19dp"
+        android:id="@+id/stopButtonWalking"
+        android:layout_alignTop="@+id/pauseButtonWalking"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/quantum_ic_skip_previous_grey600_36"
+        android:id="@+id/previousSongButtonWalking"
+        android:layout_alignTop="@+id/stopButtonWalking"
+        android:layout_toEndOf="@+id/stopButtonWalking"
+        android:layout_marginStart="18dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cast_ic_mini_controller_skip_next"
+        android:id="@+id/nextSongButtonWalking"
+        android:layout_alignTop="@+id/previousSongButtonWalking"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp" />
+
     <ImageView
         android:layout_width="177dp"
         android:layout_height="248dp"
         android:id="@+id/walkingImageView"
         android:src="@drawable/walkingimage"
-        android:layout_gravity="center|bottom"/>
+        android:layout_gravity="center|bottom"
+        android:layout_above="@+id/stopButtonWalking"
+        android:layout_toEndOf="@+id/pauseButtonWalking"
+        android:layout_marginBottom="59dp" />
 
 </RelativeLayout>

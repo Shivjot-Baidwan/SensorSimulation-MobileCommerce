@@ -15,11 +15,60 @@
         android:textStyle="normal|bold"
         android:textAlignment="center" />
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_media_play"
+        android:layout_marginLeft="18dp"
+        android:id="@+id/playButtonRunning"
+        android:layout_marginBottom="49dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_media_pause"
+        android:layout_marginLeft="24dp"
+        android:id="@+id/pauseButtonRunning"
+        android:layout_alignTop="@+id/playButtonRunning"
+        android:layout_toEndOf="@+id/playButtonRunning"
+        android:layout_marginStart="11dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cast_ic_mini_controller_stop"
+        android:layout_marginLeft="19dp"
+        android:id="@+id/stopButtonRunning"
+        android:layout_alignTop="@+id/pauseButtonRunning"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/quantum_ic_skip_previous_grey600_36"
+        android:id="@+id/previousSongButtonRunning"
+        android:layout_alignTop="@+id/stopButtonRunning"
+        android:layout_toEndOf="@+id/stopButtonRunning"
+        android:layout_marginStart="18dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cast_ic_mini_controller_skip_next"
+        android:id="@+id/nextSongButtonRunning"
+        android:layout_alignTop="@+id/previousSongButtonRunning"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp" />
+
     <ImageView
         android:layout_width="240dp"
         android:layout_height="248dp"
         android:id="@+id/runningImageView"
         android:src="@drawable/runningimage"
-        android:layout_gravity="center|bottom"/>
+        android:layout_gravity="center|bottom"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
