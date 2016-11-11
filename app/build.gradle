@@ -5,16 +5,22 @@ android {
     buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "com.mobilecommerce.sensorsimulation"
-        minSdkVersion 19
+        minSdkVersion 17
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        // Enabling multidex support.
+        multiDexEnabled true
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
         }
     }
     sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/fonts'] } }
@@ -27,7 +33,9 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:design:24.2.1'
-    compile 'com.google.android.gms:play-services:9.6.1'
+    compile 'com.google.android.gms:play-services:9.8.0'
+    compile 'com.google.firebase:firebase-messaging:9.6.1'
     compile 'com.android.support:support-v4:24.2.1'
+    compile 'com.android.support:multidex:1.0.0'
     testCompile 'junit:junit:4.12'
 }

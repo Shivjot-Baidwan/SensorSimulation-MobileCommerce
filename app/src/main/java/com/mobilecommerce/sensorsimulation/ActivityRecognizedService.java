@@ -37,7 +37,7 @@ public class ActivityRecognizedService extends IntentService {
             switch( activity.getType() ) {
                 case DetectedActivity.IN_VEHICLE: {
                     Log.e( "ActivityRecogition", "In Vehicle: " + activity.getConfidence() );
-                    if(activity.getConfidence() >= 75) {
+                    if(activity.getConfidence() >= 0) {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
                         builder.setContentText("Are you in a vehicle?");
                         builder.setSmallIcon(R.drawable.icon);
@@ -71,7 +71,7 @@ public class ActivityRecognizedService extends IntentService {
                 */
                 case DetectedActivity.RUNNING: {
                     Log.e( "ActivityRecogition", "Running: " + activity.getConfidence() );
-                    if(activity.getConfidence() >= 75) {
+                    if(activity.getConfidence() >= 0) {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
                         builder.setContentText("Are you Running?");
                         builder.setSmallIcon(R.drawable.icon);
@@ -87,7 +87,7 @@ public class ActivityRecognizedService extends IntentService {
                 }
                 case DetectedActivity.STILL: {
                     Log.e( "ActivityRecogition12", "Still: " + activity.getConfidence() );
-                    if(activity.getConfidence() >= 75) {
+                    if(activity.getConfidence() >= 0) {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
                         builder.setContentText("Are you still?");
                         builder.setSmallIcon(R.drawable.icon);
@@ -109,7 +109,7 @@ public class ActivityRecognizedService extends IntentService {
                 */
                 case DetectedActivity.WALKING: {
                     Log.e( "ActivityRecogition", "Walking: " + activity.getConfidence() );
-                    if( activity.getConfidence() >= 75 ) {
+                    if( activity.getConfidence() >= 0 ) {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
                         builder.setContentText( "Are you walking?" );
                         builder.setSmallIcon( R.mipmap.ic_launcher );
