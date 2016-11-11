@@ -26,71 +26,11 @@ public class WalkingActivity extends AppCompatActivity {
 
         createAndAddAFragment();
         load_Songs();
-
-        playButton = (ImageButton) findViewById(R.id.playButtonRunning);
-        pauseButton = (ImageButton) findViewById(R.id.pauseButton);
-        stopButton = (ImageButton) findViewById(R.id.stopButton);
-        nextSongButton = (ImageButton) findViewById(R.id.nextSongButton);
-        previousSongButton = (ImageButton) findViewById(R.id.previousSongButton);
-
-        playButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("Error", "Error on Create ");
-                soundPlayer = MediaPlayer.create(getApplicationContext(), songs[position]);
-                soundPlayer.start();
-            }
-        });
-        pauseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (soundPlayer.isPlaying()) {
-                    soundPlayer.pause();
-                } else
-                    soundPlayer.start();
-
-            }
-        });
-        stopButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                soundPlayer.stop();
-                position = 0;
-                soundPlayer = MediaPlayer.create(getApplicationContext(), songs[position]);
-
-            }
-        });
-        nextSongButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (soundPlayer.isPlaying()) {
-                    soundPlayer.stop();
-                }
-                if (position == 5) {
-                    position = 0;
-                } else {
-                    position++;
-                }
-                soundPlayer = MediaPlayer.create(getApplicationContext(), songs[position]);
-                soundPlayer.start();
-            }
-        });
-
-        previousSongButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (soundPlayer.isPlaying()) {
-                    soundPlayer.stop();
-                }
-                if (position == 0) {
-                    position = 0;
-                } else {
-                    position--;
-                }
-                soundPlayer = MediaPlayer.create(getApplicationContext(), songs[position]);
-                soundPlayer.start();
-            }
-        });
+        playButton = (ImageButton) findViewById(R.id.playButtonWalking);
+        pauseButton = (ImageButton) findViewById(R.id.pauseButtonWalking);
+        stopButton = (ImageButton) findViewById(R.id.stopButtonWalking);
+        nextSongButton = (ImageButton) findViewById(R.id.nextSongButtonWalking);
+        previousSongButton = (ImageButton) findViewById(R.id.previousSongButtonWalking);
     }
 
     @Override
@@ -115,6 +55,51 @@ public class WalkingActivity extends AppCompatActivity {
 
         fragmentTransaction.commit();// using commit here to make sure that everything we did above actually happens.
     }
+    public void playMusic(View view) {
+        MainActivity.soundPlayer = MediaPlayer.create(this, songs[position]);
+        MainActivity.soundPlayer.start();
+    }
+
+    public void pauseMusic(View view){
+        if (MainActivity.soundPlayer.isPlaying()) {
+            MainActivity.soundPlayer.pause();
+        } else
+            MainActivity.soundPlayer.start();
+    }
+
+    public void stopMusic(View view) {
+        MainActivity.soundPlayer.stop();
+        position = 0;
+        MainActivity.soundPlayer = MediaPlayer.create(this, songs[position]);
+
+    }
+    public void previousMusic(View view) {
+        if (MainActivity.soundPlayer.isPlaying()) {
+            MainActivity.soundPlayer.stop();
+        }
+        if (position == 0) {
+            position = 0;
+        } else {
+            position--;
+        }
+        MainActivity.soundPlayer = MediaPlayer.create(this, songs[position]);
+        MainActivity.soundPlayer.start();
+
+    }
+    public void nextMusic(View view) {
+        if (MainActivity.soundPlayer.isPlaying()) {
+            MainActivity.soundPlayer.stop();
+        }
+        if (position == 5) {
+            position = 0;
+        } else {
+            position++;
+        }
+        MainActivity.soundPlayer = MediaPlayer.create(this, songs[position]);
+        MainActivity.soundPlayer.start();
+
+    }
+
 
     public void load_Songs() {
         songs[0] = R.raw.calvin_harris;

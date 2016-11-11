@@ -22,6 +22,7 @@
         android:layout_marginLeft="18dp"
         android:id="@+id/playButtonRunning"
         android:layout_marginBottom="49dp"
+        android:onClick="playMusic"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 
@@ -31,6 +32,7 @@
         android:src="@drawable/ic_media_pause"
         android:layout_marginLeft="24dp"
         android:id="@+id/pauseButtonRunning"
+        android:onClick="pauseMusic"
         android:layout_alignTop="@+id/playButtonRunning"
         android:layout_toEndOf="@+id/playButtonRunning"
         android:layout_marginStart="11dp" />
@@ -40,6 +42,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/cast_ic_mini_controller_stop"
         android:layout_marginLeft="19dp"
+        android:onClick="stopMusic"
         android:id="@+id/stopButtonRunning"
         android:layout_alignTop="@+id/pauseButtonRunning"
         android:layout_centerHorizontal="true" />
@@ -47,6 +50,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="previousMusic"
         android:src="@drawable/quantum_ic_skip_previous_grey600_36"
         android:id="@+id/previousSongButtonRunning"
         android:layout_alignTop="@+id/stopButtonRunning"
@@ -58,6 +62,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/cast_ic_mini_controller_skip_next"
         android:id="@+id/nextSongButtonRunning"
+        android:onClick="nextMusic"
         android:layout_alignTop="@+id/previousSongButtonRunning"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="16dp" />

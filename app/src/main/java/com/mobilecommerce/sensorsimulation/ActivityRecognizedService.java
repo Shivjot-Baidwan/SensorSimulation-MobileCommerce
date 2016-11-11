@@ -35,6 +35,8 @@ public class ActivityRecognizedService extends IntentService {
     private void handleDetectedActivities(List<DetectedActivity> probableActivities) {
         for( DetectedActivity activity : probableActivities ) {
             switch( activity.getType() ) {
+
+                /*
                 case DetectedActivity.IN_VEHICLE: {
                     Log.e( "ActivityRecogition", "In Vehicle: " + activity.getConfidence() );
                     if(activity.getConfidence() >= 0) {
@@ -51,6 +53,7 @@ public class ActivityRecognizedService extends IntentService {
                     }
                     break;
                 }
+                */
                 /*
                 case DetectedActivity.ON_BICYCLE: {
                     Log.e( "ActivityRecogition", "On Bicycle: " + activity.getConfidence() );
@@ -69,6 +72,7 @@ public class ActivityRecognizedService extends IntentService {
                     break;
                 }
                 */
+                    /*
                 case DetectedActivity.RUNNING: {
                     Log.e( "ActivityRecogition", "Running: " + activity.getConfidence() );
                     if(activity.getConfidence() >= 0) {
@@ -85,6 +89,7 @@ public class ActivityRecognizedService extends IntentService {
                     }
                     break;
                 }
+                */
                 case DetectedActivity.STILL: {
                     Log.e( "ActivityRecogition12", "Still: " + activity.getConfidence() );
                     if(activity.getConfidence() >= 0) {
@@ -107,6 +112,8 @@ public class ActivityRecognizedService extends IntentService {
                     break;
                 }
                 */
+
+                    /*
                 case DetectedActivity.WALKING: {
                     Log.e( "ActivityRecogition", "Walking: " + activity.getConfidence() );
                     if( activity.getConfidence() >= 0 ) {
@@ -127,6 +134,8 @@ public class ActivityRecognizedService extends IntentService {
                     Log.e( "ActivityRecogition", "Unknown: " + activity.getConfidence() );
                     break;
                 }
+
+                */
             }
         }
     }

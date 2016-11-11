@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.icu.text.SimpleDateFormat;
+import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,8 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity
         implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
+
+    public static MediaPlayer soundPlayer;
 
     public GoogleApiClient mApiClient;
     public static final String inVehicleFragmentToLoad = "com.mobilecommerce.sensorsimulation.DrivingScreenFragment";
@@ -69,13 +72,13 @@ public class MainActivity extends AppCompatActivity
 
         Calendar c = Calendar.getInstance();
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy  hh:mm a ");
-        String currentDateTimeString = simpleDateFormat.format(c.getTime());
+      //  SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy  hh:mm a ");
+      //  String currentDateTimeString = simpleDateFormat.format(c.getTime());
 
-        Toast.makeText(this,currentDateTimeString,Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this,currentDateTimeString,Toast.LENGTH_SHORT).show();
 
         TextView dateTextView = (TextView) findViewById(R.id.dateTextView);
-        dateTextView.setText(currentDateTimeString);
+      //  dateTextView.setText(currentDateTimeString);
         animationImages = (ImageView) findViewById(R.id.animationView);
 
         animationImages.post(new Runnable() {
@@ -116,7 +119,7 @@ public class MainActivity extends AppCompatActivity
         Log.d("Success: ", "Connected to GoogleAPIClient");
         Intent intent = new Intent(this, ActivityRecognizedService.class);
         PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(mApiClient, 3000, pendingIntent);
+        ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(mApiClient, 10000, pendingIntent);
     }
 
     //implementing the required interfaces for GoogleApiClient

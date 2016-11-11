@@ -22,6 +22,7 @@
         android:layout_marginLeft="18dp"
         android:id="@+id/playButtonWalking"
         android:layout_marginBottom="49dp"
+        android:onClick="playMusic"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 
@@ -31,6 +32,7 @@
         android:src="@drawable/ic_media_pause"
         android:layout_marginLeft="24dp"
         android:id="@+id/pauseButtonWalking"
+        android:onClick="pauseMusic"
         android:layout_alignTop="@+id/playButtonWalking"
         android:layout_toEndOf="@+id/playButtonWalking"
         android:layout_marginStart="11dp" />
@@ -41,6 +43,7 @@
         android:src="@drawable/cast_ic_mini_controller_stop"
         android:layout_marginLeft="19dp"
         android:id="@+id/stopButtonWalking"
+        android:onClick="stopMusic"
         android:layout_alignTop="@+id/pauseButtonWalking"
         android:layout_centerHorizontal="true" />
 
@@ -49,6 +52,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/quantum_ic_skip_previous_grey600_36"
         android:id="@+id/previousSongButtonWalking"
+        android:onClick="previousMusic"
         android:layout_alignTop="@+id/stopButtonWalking"
         android:layout_toEndOf="@+id/stopButtonWalking"
         android:layout_marginStart="18dp" />
@@ -60,6 +64,7 @@
         android:id="@+id/nextSongButtonWalking"
         android:layout_alignTop="@+id/previousSongButtonWalking"
         android:layout_alignParentEnd="true"
+        android:onClick="nextMusic"
         android:layout_marginEnd="16dp" />
 
     <ImageView

@@ -14,7 +14,6 @@ import android.widget.ImageButton;
 public class RunningActivity extends AppCompatActivity {
 
     private ImageButton playButton, pauseButton, stopButton, nextSongButton, previousSongButton;
-    private MediaPlayer soundPlayer;
     private Integer[] songs = new Integer[6];
     private static int position = 0;
 
@@ -31,65 +30,6 @@ public class RunningActivity extends AppCompatActivity {
         stopButton = (ImageButton) findViewById(R.id.stopButtonRunning);
         nextSongButton = (ImageButton) findViewById(R.id.nextSongButton);
         previousSongButton = (ImageButton) findViewById(R.id.previousSongButtonRunning);
-
-        playButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("Error", "Error on Create ");
-                soundPlayer = MediaPlayer.create(getApplicationContext(), songs[position]);
-                soundPlayer.start();
-            }
-        });
-        pauseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (soundPlayer.isPlaying()) {
-                    soundPlayer.pause();
-                } else
-                    soundPlayer.start();
-
-            }
-        });
-        stopButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                soundPlayer.stop();
-                position = 0;
-                soundPlayer = MediaPlayer.create(getApplicationContext(), songs[position]);
-
-            }
-        });
-        nextSongButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (soundPlayer.isPlaying()) {
-                    soundPlayer.stop();
-                }
-                if (position == 5) {
-                    position = 0;
-                } else {
-                    position++;
-                }
-                soundPlayer = MediaPlayer.create(getApplicationContext(), songs[position]);
-                soundPlayer.start();
-            }
-        });
-
-        previousSongButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (soundPlayer.isPlaying()) {
-                    soundPlayer.stop();
-                }
-                if (position == 0) {
-                    position = 0;
-                } else {
-                    position--;
-                }
-                soundPlayer = MediaPlayer.create(getApplicationContext(), songs[position]);
-                soundPlayer.start();
-            }
-        });
 
     }
 
@@ -123,6 +63,50 @@ public class RunningActivity extends AppCompatActivity {
         songs[3] = R.raw.sendmylove;
         songs[4] = R.raw.how_deep_is_your_love;
         songs[5] = R.raw.this_is_what_you_came_for;
+
+    }
+    public void playMusic(View view) {
+        MainActivity.soundPlayer = MediaPlayer.create(this, songs[position]);
+        MainActivity.soundPlayer.start();
+    }
+
+    public void pauseMusic(View view){
+        if (MainActivity.soundPlayer.isPlaying()) {
+            MainActivity.soundPlayer.pause();
+        } else
+            MainActivity.soundPlayer.start();
+    }
+
+    public void stopMusic(View view) {
+        MainActivity.soundPlayer.stop();
+        position = 0;
+        MainActivity.soundPlayer = MediaPlayer.create(this, songs[position]);
+
+    }
+    public void previousMusic(View view) {
+        if (MainActivity.soundPlayer.isPlaying()) {
+            MainActivity.soundPlayer.stop();
+        }
+        if (position == 0) {
+            position = 0;
+        } else {
+            position--;
+        }
+        MainActivity.soundPlayer = MediaPlayer.create(this, songs[position]);
+        MainActivity.soundPlayer.start();
+
+    }
+    public void nextMusic(View view) {
+        if (MainActivity.soundPlayer.isPlaying()) {
+            MainActivity.soundPlayer.stop();
+        }
+        if (position == 5) {
+            position = 0;
+        } else {
+            position++;
+        }
+        MainActivity.soundPlayer = MediaPlayer.create(this, songs[position]);
+        MainActivity.soundPlayer.start();
 
     }
 }
