@@ -42,7 +42,6 @@ public class StillActivity extends AppCompatActivity  {
         //mainActivity.stillScreenMessage = (TextView) findViewById(R.id.stillScreenTextView);
         stillScreenMessage.setTypeface(typeface2);
 
-        //createAndAddAFragment();
 
         playButton = (ImageButton) findViewById(R.id.playButtonRunning);
         pauseButton = (ImageButton) findViewById(R.id.pauseButton);
@@ -51,32 +50,6 @@ public class StillActivity extends AppCompatActivity  {
         previousSongButton = (ImageButton) findViewById(R.id.previousSongButton);
 
         load_Songs();
-    }
-    private void createAndAddAFragment() {
-
-        //grabs our fragment manager and fragment transaction so that we can add the edit or view fragment dynamically.
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        //FIRST FRAGMENT STARTS **********
-        MapFragmentTest mapFragmentTest = new MapFragmentTest();
-        setTitle(R.string.still_screen_title);
-        fragmentTransaction.add
-                (R.id.mapFrag, mapFragmentTest, "MAP_SCREEN_FRAGMENT");
-        //FIRST FRAGMENT ENDS **********
-
-        //SECOND FRAGMENT STARTS **********
-        // MainActivity.FragmentToLoad fragmentToLoad = (MainActivity.FragmentToLoad)
-        //        intent.getSerializableExtra(MainActivity.stillFragmentToLoad);
-        //GoogleMapFragment googleMapFragment = new GoogleMapFragment();
-        //setTitle(R.string.map_fragment_title);
-        //fragmentTransaction.add
-        //      (R.id.activity_still, googleMapFragment, "MAP_SCREEN_FRAGMENT");
-        //SECOND FRAGMENT ENDS **********
-
-
-        fragmentTransaction.commit();// using commit here to make sure that everything we did above actually happens.
-
     }
 
     public void playMusic(View view) {

@@ -75,4 +75,14 @@
         android:layout_toEndOf="@+id/pauseButtonWalking"
         android:layout_marginBottom="59dp" />
 
+
+    <fragment
+        class="com.mobilecommerce.sensorsimulation.MapFragmentTest"
+        android:layout_width="100dp"
+        android:id="@+id/fragment2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_height="100dp"
+        android:layout_alignEnd="@+id/nextSongButton" />
+
 </RelativeLayout>
