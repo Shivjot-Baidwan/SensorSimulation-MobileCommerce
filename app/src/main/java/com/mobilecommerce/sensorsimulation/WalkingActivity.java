@@ -24,7 +24,7 @@ public class WalkingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_walking);
 
-        createAndAddAFragment();
+        //createAndAddAFragment();
         load_Songs();
         playButton = (ImageButton) findViewById(R.id.playButtonWalking);
         pauseButton = (ImageButton) findViewById(R.id.pauseButtonWalking);

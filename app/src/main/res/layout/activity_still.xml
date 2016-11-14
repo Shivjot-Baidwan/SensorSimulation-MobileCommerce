@@ -6,30 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.mobilecommerce.sensorsimulation.StillActivity">
-<!--android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin" -->
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="223dp"
-        android:id="@+id/stillScreenTextView"
-        android:text="@string/still_screen_message"
-        android:textSize="30sp"
-        android:textStyle="normal|bold"
-        android:textAlignment="center" />
-
-
-    <ImageView
-        android:layout_width="177dp"
-        android:layout_height="248dp"
-        android:id="@+id/stillImageView"
-        android:src="@drawable/stillimage"
-        android:layout_gravity="center|bottom"
-        android:layout_marginBottom="45dp"
-        android:layout_above="@+id/playButtonRunning"
-        android:layout_centerHorizontal="true" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -82,5 +58,42 @@
         android:layout_alignTop="@+id/previousSongButton"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="16dp" />
+
+    <!--android:textStyle="normal|bold"
+
+        -->
+
+
+    <fragment
+        class="com.mobilecommerce.sensorsimulation.MapFragmentTest"
+        android:layout_width="100dp"
+        android:id="@+id/fragment"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_height="100dp"
+        android:layout_alignEnd="@+id/nextSongButton" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="223dp"
+        android:id="@+id/stillScreenTextView"
+        android:text="YOU ARE STANDING STILL....DO SOMETHING !!!"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:fontFamily="cursive"
+        android:layout_alignTop="@+id/stillImageView"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="47dp" />
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="500dp"
+        android:id="@+id/stillImageView"
+        android:src="@drawable/stillimage"
+        android:layout_gravity="center|bottom"
+        android:layout_above="@+id/stopButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="47dp" />
+
 
 </RelativeLayout>

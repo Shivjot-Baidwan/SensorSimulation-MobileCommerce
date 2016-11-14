@@ -5,6 +5,7 @@ Authors: Venus Pathak - 7972526
 package com.mobilecommerce.sensorsimulation;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -13,20 +14,35 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
-public class StillActivity extends AppCompatActivity {
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 
+import static android.R.attr.typeface;
+
+public class StillActivity extends AppCompatActivity  {
 
     private static int position = 0;
 
     private ImageButton playButton, pauseButton, stopButton, nextSongButton, previousSongButton;
     private Integer[] songs = new Integer[6];
+    private GoogleMap googleMap;
+    private TextView stillScreenMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_still);
-        createAndAddAFragment();
+        //MainActivity mainActivity = new MainActivity();
+
+        Typeface typeface2 = Typeface.createFromAsset(getAssets(), "fonts/font1.ttf");
+        stillScreenMessage = (TextView) findViewById(R.id.stillScreenTextView);
+        //mainActivity.stillScreenMessage = (TextView) findViewById(R.id.stillScreenTextView);
+        stillScreenMessage.setTypeface(typeface2);
+
+        //createAndAddAFragment();
 
         playButton = (ImageButton) findViewById(R.id.playButtonRunning);
         pauseButton = (ImageButton) findViewById(R.id.pauseButton);
@@ -34,25 +50,33 @@ public class StillActivity extends AppCompatActivity {
         nextSongButton = (ImageButton) findViewById(R.id.nextSongButton);
         previousSongButton = (ImageButton) findViewById(R.id.previousSongButton);
 
-         load_Songs();
+        load_Songs();
     }
-
     private void createAndAddAFragment() {
-
-        Intent intent = getIntent();// this is used to grab intent and fragment so that it launches
-        MainActivity.FragmentToLoad fragmentToLoad = (MainActivity.FragmentToLoad)
-                intent.getSerializableExtra(MainActivity.stillFragmentToLoad);
 
         //grabs our fragment manager and fragment transaction so that we can add the edit or view fragment dynamically.
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        StillScreenFragment stillScreenFragment = new StillScreenFragment();
+        //FIRST FRAGMENT STARTS **********
+        MapFragmentTest mapFragmentTest = new MapFragmentTest();
         setTitle(R.string.still_screen_title);
         fragmentTransaction.add
-                (R.id.activity_still, stillScreenFragment, "STILL_SCREEN_FRAGMENT");
+                (R.id.mapFrag, mapFragmentTest, "MAP_SCREEN_FRAGMENT");
+        //FIRST FRAGMENT ENDS **********
+
+        //SECOND FRAGMENT STARTS **********
+        // MainActivity.FragmentToLoad fragmentToLoad = (MainActivity.FragmentToLoad)
+        //        intent.getSerializableExtra(MainActivity.stillFragmentToLoad);
+        //GoogleMapFragment googleMapFragment = new GoogleMapFragment();
+        //setTitle(R.string.map_fragment_title);
+        //fragmentTransaction.add
+        //      (R.id.activity_still, googleMapFragment, "MAP_SCREEN_FRAGMENT");
+        //SECOND FRAGMENT ENDS **********
+
 
         fragmentTransaction.commit();// using commit here to make sure that everything we did above actually happens.
+
     }
 
     public void playMusic(View view) {
@@ -109,6 +133,4 @@ public class StillActivity extends AppCompatActivity {
         songs[5] = R.raw.this_is_what_you_came_for;
 
     }
-
-
 }

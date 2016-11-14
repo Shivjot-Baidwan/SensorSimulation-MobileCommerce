@@ -9,6 +9,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
+import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
 import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.ActivityRecognition;
+import com.google.android.gms.location.LocationServices;
 
 import java.util.Calendar;
 
@@ -32,53 +34,53 @@ public class MainActivity extends AppCompatActivity
 
     public static MediaPlayer soundPlayer;
 
-    public GoogleApiClient mApiClient;
+    public static GoogleApiClient mApiClient;
     public static final String inVehicleFragmentToLoad = "com.mobilecommerce.sensorsimulation.DrivingScreenFragment";
     public static final String runningFragmentToLoad = "com.mobilecommerce.sensorsimulation.RunningScreenFragment";
     public static final String stillFragmentToLoad = "com.mobilecommerce.sensorsimulation.StillScreenFragment";
     public static final String walkingFragmentToLoad = "com.mobilecommerce.sensorsimulation.WalkingScreenFragment";
+    public static final String mapFragmentToLoad = "com.mobilecommerce.sensorsimulation.OurMapFragment";
 
     private ImageView animationImages;
-    private TextView welcomeScreenMessage1,welcomeScreenMessage2,walkingScreenMessage,runningScreenMessage,
+    public TextView welcomeScreenMessage1,welcomeScreenMessage2,walkingScreenMessage,runningScreenMessage,
             stillScreenMessage,drivingScreenMessage;
 
-    public enum FragmentToLoad{APP_IN_VEHICLE, APP_RUNNING, APP_STILL, APP_WALKING}
+    public enum FragmentToLoad{APP_IN_VEHICLE, APP_RUNNING, APP_STILL, APP_WALKING, APP_MAP}
+    public Typeface typeface;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_welcome_screen);
 
+        /*
+        typeface = Typeface.createFromAsset(getAssets(), "fonts/font1.ttf");
+
         welcomeScreenMessage1 = (TextView) findViewById(R.id.welcomeMessage1);
         welcomeScreenMessage2 = (TextView) findViewById(R.id.welcomeMessage2);
-        walkingScreenMessage = (TextView) findViewById(R.id.walkingScreenTextView);
-        runningScreenMessage = (TextView) findViewById(R.id.runningScreenTextView);
+        //walkingScreenMessage = (TextView) findViewById(R.id.walkingScreenTextView);
+        //runningScreenMessage = (TextView) findViewById(R.id.runningScreenTextView);
         //stillScreenMessage = (TextView) findViewById(R.id.stillScreenTextView);
-        drivingScreenMessage = (TextView) findViewById(R.id.drivingScreenTextView);
+        //drivingScreenMessage = (TextView) findViewById(R.id.drivingScreenTextView);
 
-/*
-        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/font1.ttf");
+
         welcomeScreenMessage1.setTypeface(typeface);
         welcomeScreenMessage2.setTypeface(typeface);
+        //stillScreenMessage.setTypeface(typeface);
         walkingScreenMessage.setTypeface(typeface);
         runningScreenMessage.setTypeface(typeface);
-        stillScreenMessage.setTypeface(typeface);
+
         drivingScreenMessage.setTypeface(typeface);
 */
         getSupportActionBar().setTitle(Html.fromHtml("<font color = '#0000b7'>SENSE ME</font"));
 
-
-
-
-        Calendar c = Calendar.getInstance();
-
-      //  SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy  hh:mm a ");
-      //  String currentDateTimeString = simpleDateFormat.format(c.getTime());
-
-      //  Toast.makeText(this,currentDateTimeString,Toast.LENGTH_SHORT).show();
+        final Calendar t = Calendar.getInstance();
 
         TextView dateTextView = (TextView) findViewById(R.id.dateTextView);
-      //  dateTextView.setText(currentDateTimeString);
+        dateTextView.setText(android.text.format.DateFormat.getDateFormat(this).format(t.getTime()));
+
         animationImages = (ImageView) findViewById(R.id.animationView);
 
         animationImages.post(new Runnable() {
@@ -107,6 +109,7 @@ public class MainActivity extends AppCompatActivity
                 .addApi(ActivityRecognition.API)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
+                .addApi(LocationServices.API)
 
                 .build();
 
@@ -119,7 +122,7 @@ public class MainActivity extends AppCompatActivity
         Log.d("Success: ", "Connected to GoogleAPIClient");
         Intent intent = new Intent(this, ActivityRecognizedService.class);
         PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(mApiClient, 10000, pendingIntent);
+        ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(mApiClient, 3000, pendingIntent);
     }
 
     //implementing the required interfaces for GoogleApiClient

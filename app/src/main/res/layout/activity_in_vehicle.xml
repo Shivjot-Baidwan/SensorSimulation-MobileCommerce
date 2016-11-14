@@ -13,7 +13,8 @@
         android:text="@string/driving_screen_message"
         android:textSize="30sp"
         android:textStyle="normal|bold"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:fontFamily="cursive" />
 
     <ImageView
         android:layout_width="240dp"

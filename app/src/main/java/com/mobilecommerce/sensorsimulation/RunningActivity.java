@@ -22,7 +22,7 @@ public class RunningActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_running);
 
-        createAndAddAFragment();
+        //createAndAddAFragment();
         load_Songs();
 
         playButton = (ImageButton) findViewById(R.id.playButtonRunning);

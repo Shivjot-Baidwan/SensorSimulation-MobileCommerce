@@ -14,7 +14,7 @@ public class InVehicleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_vehicle);
 
-        createAndAddAFragment();
+        //createAndAddAFragment();
     }
 
     @Override
