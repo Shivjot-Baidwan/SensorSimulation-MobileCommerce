@@ -1,13 +1,16 @@
 package com.mobilecommerce.sensorsimulation;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.TextView;
 
 public class InVehicleActivity extends AppCompatActivity {
+    private TextView inVehicleScreenMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +18,9 @@ public class InVehicleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_in_vehicle);
 
         //createAndAddAFragment();
+        Typeface typeface5 = Typeface.createFromAsset(getAssets(), "fonts/font1.ttf");
+        inVehicleScreenMessage = (TextView) findViewById(R.id.drivingScreenTextView);
+        inVehicleScreenMessage.setTypeface(typeface5);
     }
 
     @Override

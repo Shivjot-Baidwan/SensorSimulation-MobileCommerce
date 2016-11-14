@@ -42,8 +42,7 @@ public class MainActivity extends AppCompatActivity
     public static final String mapFragmentToLoad = "com.mobilecommerce.sensorsimulation.OurMapFragment";
 
     private ImageView animationImages;
-    public TextView welcomeScreenMessage1,welcomeScreenMessage2,walkingScreenMessage,runningScreenMessage,
-            stillScreenMessage,drivingScreenMessage;
+    public TextView welcomeScreenMessage1,welcomeScreenMessage2,drivingScreenMessage;
 
     public enum FragmentToLoad{APP_IN_VEHICLE, APP_RUNNING, APP_STILL, APP_WALKING, APP_MAP}
     public Typeface typeface;
@@ -55,25 +54,16 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_welcome_screen);
 
-        /*
+
         typeface = Typeface.createFromAsset(getAssets(), "fonts/font1.ttf");
 
         welcomeScreenMessage1 = (TextView) findViewById(R.id.welcomeMessage1);
         welcomeScreenMessage2 = (TextView) findViewById(R.id.welcomeMessage2);
-        //walkingScreenMessage = (TextView) findViewById(R.id.walkingScreenTextView);
-        //runningScreenMessage = (TextView) findViewById(R.id.runningScreenTextView);
-        //stillScreenMessage = (TextView) findViewById(R.id.stillScreenTextView);
-        //drivingScreenMessage = (TextView) findViewById(R.id.drivingScreenTextView);
-
 
         welcomeScreenMessage1.setTypeface(typeface);
         welcomeScreenMessage2.setTypeface(typeface);
-        //stillScreenMessage.setTypeface(typeface);
-        walkingScreenMessage.setTypeface(typeface);
-        runningScreenMessage.setTypeface(typeface);
 
-        drivingScreenMessage.setTypeface(typeface);
-*/
+
         getSupportActionBar().setTitle(Html.fromHtml("<font color = '#0000b7'>SENSE ME</font"));
 
         final Calendar t = Calendar.getInstance();

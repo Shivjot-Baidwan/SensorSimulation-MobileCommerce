@@ -1,6 +1,7 @@
 package com.mobilecommerce.sensorsimulation;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class WalkingActivity extends AppCompatActivity {
 
@@ -18,6 +20,7 @@ public class WalkingActivity extends AppCompatActivity {
     private ImageButton playButton, pauseButton, stopButton, nextSongButton, previousSongButton;
     private MediaPlayer soundPlayer;
     private Integer[] songs = new Integer[6];
+    private TextView walkingScreenMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,9 @@ public class WalkingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_walking);
 
         //createAndAddAFragment();
+        Typeface typeface3 = Typeface.createFromAsset(getAssets(), "fonts/font1.ttf");
+        walkingScreenMessage = (TextView) findViewById(R.id.walkingScreenTextView);
+        walkingScreenMessage.setTypeface(typeface3);
         load_Songs();
         playButton = (ImageButton) findViewById(R.id.playButtonWalking);
         pauseButton = (ImageButton) findViewById(R.id.pauseButtonWalking);

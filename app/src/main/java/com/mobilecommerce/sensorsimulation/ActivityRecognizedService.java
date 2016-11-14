@@ -36,10 +36,10 @@ public class ActivityRecognizedService extends IntentService {
         for( DetectedActivity activity : probableActivities ) {
             switch( activity.getType() ) {
 
-                /*
+
                 case DetectedActivity.IN_VEHICLE: {
                     Log.e( "ActivityRecogition", "In Vehicle: " + activity.getConfidence() );
-                    if(activity.getConfidence() >= 0) {
+                    if(activity.getConfidence() >= 100) {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
                         builder.setContentText("Are you in a vehicle?");
                         builder.setSmallIcon(R.drawable.icon);
@@ -47,7 +47,7 @@ public class ActivityRecognizedService extends IntentService {
                         NotificationManagerCompat.from(this).notify(0, builder.build());
 
                         Intent intent = new Intent(this,InVehicleActivity.class);
-                        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         //intent.putExtra(MainActivity.inVehicleFragmentToLoad, MainActivity.FragmentToLoad.APP_IN_VEHICLE);
                         startActivity(intent);
                     }
@@ -56,7 +56,7 @@ public class ActivityRecognizedService extends IntentService {
 
                 case DetectedActivity.RUNNING: {
                     Log.e( "ActivityRecogition", "Running: " + activity.getConfidence() );
-                    if(activity.getConfidence() >= 0) {
+                    if(activity.getConfidence() >= 10) {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
                         builder.setContentText("Are you Running?");
                         builder.setSmallIcon(R.drawable.icon);
@@ -64,16 +64,16 @@ public class ActivityRecognizedService extends IntentService {
                         NotificationManagerCompat.from(this).notify(0, builder.build());
 
                         Intent intent = new Intent(this,RunningActivity.class);
-                        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         //intent.putExtra(MainActivity.runningFragmentToLoad, MainActivity.FragmentToLoad.APP_RUNNING);
                         startActivity(intent);
                     }
                     break;
                 }
-                */
+
                 case DetectedActivity.STILL: {
                     Log.e( "ActivityRecogition12", "Still: " + activity.getConfidence() );
-                    if(activity.getConfidence() >= 0) {
+                    if(activity.getConfidence() >= 35) {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
                         builder.setContentText("Are you still?");
                         builder.setSmallIcon(R.drawable.icon);
@@ -81,23 +81,24 @@ public class ActivityRecognizedService extends IntentService {
                         NotificationManagerCompat.from(this).notify(0,builder.build());
 
                         Intent intent = new Intent(this,StillActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     }
                     break;
                 }
 
-                    /*
+
                 case DetectedActivity.WALKING: {
                     Log.e( "ActivityRecogition", "Walking: " + activity.getConfidence() );
-                    if( activity.getConfidence() >= 0 ) {
+                    if( activity.getConfidence() >= 10 ) {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
                         builder.setContentText( "Are you walking?" );
-                        builder.setSmallIcon( R.mipmap.ic_launcher );
+                        builder.setSmallIcon( R.drawable.icon );
                         builder.setContentTitle( getString( R.string.app_name ) );
                         NotificationManagerCompat.from(this).notify(0, builder.build());
 
                         Intent intent = new Intent(this,WalkingActivity.class);
-                        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         //intent.putExtra(MainActivity.walkingFragmentToLoad, MainActivity.FragmentToLoad.APP_WALKING);
                         startActivity(intent);
                     }
@@ -108,7 +109,7 @@ public class ActivityRecognizedService extends IntentService {
                     break;
                 }
 
-                */
+
             }
         }
     }

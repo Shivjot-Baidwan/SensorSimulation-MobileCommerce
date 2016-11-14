@@ -6,15 +6,28 @@
     android:layout_height="match_parent"
     tools:context="com.mobilecommerce.sensorsimulation.RunningActivity">
 
+    <ImageView
+        android:id="@+id/runningImageView"
+        android:src="@drawable/runningimage"
+        android:layout_gravity="center|bottom"
+        android:layout_below="@+id/runningScreenTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="68dp"
+        android:layout_height="300dp"
+        android:layout_width="400dp" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="223dp"
         android:id="@+id/runningScreenTextView"
         android:text="@string/running_screen_message"
-        android:textSize="30sp"
+        android:textSize="40sp"
         android:textStyle="normal|bold"
         android:textAlignment="center"
-        android:fontFamily="cursive" />
+        android:fontFamily="cursive"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="125dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -22,21 +35,10 @@
         android:src="@drawable/ic_media_play"
         android:layout_marginLeft="18dp"
         android:id="@+id/playButtonRunning"
-        android:layout_marginBottom="49dp"
         android:onClick="playMusic"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_media_pause"
-        android:layout_marginLeft="24dp"
-        android:id="@+id/pauseButtonRunning"
-        android:onClick="pauseMusic"
-        android:layout_alignTop="@+id/playButtonRunning"
-        android:layout_toEndOf="@+id/playButtonRunning"
-        android:layout_marginStart="11dp" />
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/runningImageView"
+        android:layout_toStartOf="@+id/stopButtonRunning" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -45,7 +47,17 @@
         android:layout_marginLeft="19dp"
         android:onClick="stopMusic"
         android:id="@+id/stopButtonRunning"
-        android:layout_alignTop="@+id/pauseButtonRunning"
+        android:layout_alignBottom="@+id/playButtonRunning"
+        android:layout_toStartOf="@+id/pauseButtonRunning" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_media_pause"
+        android:layout_marginLeft="24dp"
+        android:id="@+id/pauseButtonRunning"
+        android:onClick="pauseMusic"
+        android:layout_alignBottom="@+id/stopButtonRunning"
         android:layout_centerHorizontal="true" />
 
     <ImageButton
@@ -54,9 +66,9 @@
         android:onClick="previousMusic"
         android:src="@drawable/quantum_ic_skip_previous_grey600_36"
         android:id="@+id/previousSongButtonRunning"
-        android:layout_alignTop="@+id/stopButtonRunning"
-        android:layout_toEndOf="@+id/stopButtonRunning"
-        android:layout_marginStart="18dp" />
+        android:layout_alignTop="@+id/pauseButtonRunning"
+        android:layout_toEndOf="@+id/pauseButtonRunning"
+        android:layout_marginStart="27dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -65,16 +77,6 @@
         android:id="@+id/nextSongButtonRunning"
         android:onClick="nextMusic"
         android:layout_alignTop="@+id/previousSongButtonRunning"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="16dp" />
-
-    <ImageView
-        android:layout_width="240dp"
-        android:layout_height="248dp"
-        android:id="@+id/runningImageView"
-        android:src="@drawable/runningimage"
-        android:layout_gravity="center|bottom"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignEnd="@+id/runningImageView" />
 
 </RelativeLayout>

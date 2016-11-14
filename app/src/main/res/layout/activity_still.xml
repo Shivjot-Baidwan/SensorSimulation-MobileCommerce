@@ -7,16 +7,19 @@
     android:layout_height="match_parent"
     tools:context="com.mobilecommerce.sensorsimulation.StillActivity">
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_media_play"
-        android:layout_marginLeft="18dp"
-        android:id="@+id/playButtonRunning"
-        android:layout_marginBottom="49dp"
-        android:onClick="playMusic"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+    <!--android:textStyle="normal|bold"
+
+        -->
+
+
+    <fragment
+        class="com.mobilecommerce.sensorsimulation.MapFragmentTest"
+        android:layout_width="800dp"
+        android:id="@+id/fragment"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_height="350dp"
+        android:layout_alignParentEnd="true" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -25,9 +28,29 @@
         android:layout_marginLeft="24dp"
         android:id="@+id/pauseButton"
         android:onClick="pauseMusic"
-        android:layout_alignTop="@+id/playButtonRunning"
-        android:layout_toEndOf="@+id/playButtonRunning"
-        android:layout_marginStart="11dp" />
+        android:layout_alignTop="@+id/previousSongButton"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:id="@+id/stillImageView"
+        android:src="@drawable/stillimage"
+        android:layout_gravity="center|bottom"
+        android:layout_below="@+id/fragment"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="68dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/stillScreenTextView"
+        android:text="YOU ARE STANDING STILL....DON'T BE LETHARGIC..DO SOMETHING !!!"
+        android:textSize="39sp"
+        android:textAlignment="center"
+        android:fontFamily="cursive"
+        android:layout_below="@+id/fragment"
+        android:layout_alignParentStart="true" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -36,8 +59,18 @@
         android:layout_marginLeft="19dp"
         android:id="@+id/stopButton"
         android:onClick="stopMusic"
-        android:layout_alignTop="@+id/pauseButton"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignBottom="@+id/pauseButton"
+        android:layout_toStartOf="@+id/pauseButton" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_media_play"
+        android:layout_marginLeft="18dp"
+        android:id="@+id/playButtonRunning"
+        android:onClick="playMusic"
+        android:layout_alignBottom="@+id/stopButton"
+        android:layout_toStartOf="@+id/stopButton" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -45,9 +78,9 @@
         app:srcCompat="@android:drawable/ic_media_previous"
         android:id="@+id/previousSongButton"
         android:onClick="previousMusic"
-        android:layout_alignTop="@+id/stopButton"
-        android:layout_toEndOf="@+id/stopButton"
-        android:layout_marginStart="18dp" />
+        android:layout_marginStart="22dp"
+        android:layout_alignTop="@+id/nextSongButton"
+        android:layout_toEndOf="@+id/pauseButton" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -55,45 +88,10 @@
         app:srcCompat="@android:drawable/ic_media_next"
         android:id="@+id/nextSongButton"
         android:onClick="nextMusic"
-        android:layout_alignTop="@+id/previousSongButton"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="16dp" />
-
-    <!--android:textStyle="normal|bold"
-
-        -->
-
-
-    <fragment
-        class="com.mobilecommerce.sensorsimulation.MapFragmentTest"
-        android:layout_width="100dp"
-        android:id="@+id/fragment"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_height="100dp"
-        android:layout_alignEnd="@+id/nextSongButton" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="223dp"
-        android:id="@+id/stillScreenTextView"
-        android:text="YOU ARE STANDING STILL....DO SOMETHING !!!"
-        android:textSize="30sp"
-        android:textAlignment="center"
-        android:fontFamily="cursive"
-        android:layout_alignTop="@+id/stillImageView"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="47dp" />
-
-    <ImageView
-        android:layout_width="300dp"
-        android:layout_height="500dp"
-        android:id="@+id/stillImageView"
-        android:src="@drawable/stillimage"
-        android:layout_gravity="center|bottom"
-        android:layout_above="@+id/stopButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="47dp" />
+        android:layout_marginStart="21dp"
+        android:layout_below="@+id/stillScreenTextView"
+        android:layout_toEndOf="@+id/previousSongButton"
+        android:layout_marginTop="270dp" />
 
 
 </RelativeLayout>

@@ -6,23 +6,57 @@
     android:layout_height="match_parent"
     tools:context="com.mobilecommerce.sensorsimulation.WalkingActivity">
 
+
+    <fragment
+        class="com.mobilecommerce.sensorsimulation.MapFragmentTest"
+        android:layout_width="800dp"
+        android:id="@+id/fragment2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_height="350dp"
+        android:layout_alignEnd="@+id/nextSongButton" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="223dp"
         android:id="@+id/walkingScreenTextView"
         android:text="@string/walking_screen_message"
-        android:fontFamily="cursive" />
+        android:fontFamily="cursive"
+        android:layout_below="@+id/fragment2"
+        android:layout_alignParentStart="true"
+        android:textSize="39sp"
+        android:textStyle="normal|bold"
+        android:textAlignment="center" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_media_play"
-        android:layout_marginLeft="18dp"
-        android:id="@+id/playButtonWalking"
-        android:layout_marginBottom="49dp"
-        android:onClick="playMusic"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:src="@drawable/cast_ic_mini_controller_skip_next"
+        android:id="@+id/nextSongButtonWalking"
+        android:onClick="nextMusic"
+        android:layout_alignTop="@+id/previousSongButtonWalking"
+        android:layout_toEndOf="@+id/previousSongButtonWalking"
+        android:layout_marginStart="27dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/quantum_ic_skip_previous_grey600_36"
+        android:id="@+id/previousSongButtonWalking"
+        android:onClick="previousMusic"
+        android:layout_alignTop="@+id/pauseButtonWalking"
+        android:layout_toEndOf="@+id/pauseButtonWalking"
+        android:layout_marginStart="23dp" />
+
+    <ImageView
+        android:layout_width="177dp"
+        android:layout_height="250dp"
+        android:id="@+id/walkingImageView"
+        android:src="@drawable/walkingimage"
+        android:layout_gravity="center|bottom"
+        android:layout_below="@+id/fragment2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="153dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -31,9 +65,9 @@
         android:layout_marginLeft="24dp"
         android:id="@+id/pauseButtonWalking"
         android:onClick="pauseMusic"
-        android:layout_alignTop="@+id/playButtonWalking"
-        android:layout_toEndOf="@+id/playButtonWalking"
-        android:layout_marginStart="11dp" />
+        android:layout_below="@+id/walkingImageView"
+        android:layout_toEndOf="@+id/stopButtonWalking"
+        android:layout_marginTop="35dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -43,46 +77,16 @@
         android:id="@+id/stopButtonWalking"
         android:onClick="stopMusic"
         android:layout_alignTop="@+id/pauseButtonWalking"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignStart="@+id/walkingImageView"
+        android:layout_marginStart="33dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/quantum_ic_skip_previous_grey600_36"
-        android:id="@+id/previousSongButtonWalking"
-        android:onClick="previousMusic"
+        android:src="@drawable/ic_media_play"
+        android:id="@+id/playButtonWalking"
+        android:onClick="playMusic"
         android:layout_alignTop="@+id/stopButtonWalking"
-        android:layout_toEndOf="@+id/stopButtonWalking"
-        android:layout_marginStart="18dp" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/cast_ic_mini_controller_skip_next"
-        android:id="@+id/nextSongButtonWalking"
-        android:layout_alignTop="@+id/previousSongButtonWalking"
-        android:layout_alignParentEnd="true"
-        android:onClick="nextMusic"
-        android:layout_marginEnd="16dp" />
-
-    <ImageView
-        android:layout_width="177dp"
-        android:layout_height="248dp"
-        android:id="@+id/walkingImageView"
-        android:src="@drawable/walkingimage"
-        android:layout_gravity="center|bottom"
-        android:layout_above="@+id/stopButtonWalking"
-        android:layout_toEndOf="@+id/pauseButtonWalking"
-        android:layout_marginBottom="59dp" />
-
-
-    <fragment
-        class="com.mobilecommerce.sensorsimulation.MapFragmentTest"
-        android:layout_width="100dp"
-        android:id="@+id/fragment2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_height="100dp"
-        android:layout_alignEnd="@+id/nextSongButton" />
+        android:layout_toStartOf="@+id/walkingImageView" />
 
 </RelativeLayout>

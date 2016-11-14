@@ -1,6 +1,7 @@
 package com.mobilecommerce.sensorsimulation;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -10,12 +11,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class RunningActivity extends AppCompatActivity {
 
     private ImageButton playButton, pauseButton, stopButton, nextSongButton, previousSongButton;
     private Integer[] songs = new Integer[6];
     private static int position = 0;
+    private TextView runningScreenMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,9 @@ public class RunningActivity extends AppCompatActivity {
 
         //createAndAddAFragment();
         load_Songs();
+        Typeface typeface4 = Typeface.createFromAsset(getAssets(), "fonts/font1.ttf");
+        runningScreenMessage = (TextView) findViewById(R.id.runningScreenTextView);
+        runningScreenMessage.setTypeface(typeface4);
 
         playButton = (ImageButton) findViewById(R.id.playButtonRunning);
         pauseButton = (ImageButton) findViewById(R.id.pauseButtonRunning);

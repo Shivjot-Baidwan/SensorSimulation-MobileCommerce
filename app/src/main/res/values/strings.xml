@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">Sensor Simulation</string>
+    <string name="app_name">SENSE ME</string>
 
     <!--Google API Key-->
-    <string name="google_api_key">AIzaSyAx-zdg5VLhDfV-XUbM9Rf0odQ_s9NtRf8</string>
+    <string name="google_api_key">AIzaSyAuxDbqA7SJnQ72rCkfL8DtXKYoKbsS4w8</string>
 
     <string name="welcome_message">KEEP CALM !!!!</string>
     <string name="welcome_message2">YOU ARE USING OUR APP</string>
@@ -14,9 +14,9 @@
     <string name="map_screen_title">MAP !!!</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="walking_screen_message">You are walking. It is the best possible exercise. </string>
-    <string name="running_screen_message">You are running. Do NOT calm. Just carry on</string>
-    <string name="still_screen_message">You are standing still. Do something</string>
+    <string name="walking_screen_message">You are walking... It is the best possible exercise... Donot Stop..Just Continue :) </string>
+    <string name="running_screen_message">You are running...Running can get you back on track..Lets try to keep up.... Go catch the STARS...</string>
+    <string name="still_screen_message">You are standing still.... Do something</string>
     <string name="driving_screen_message">Concentrate on the driving.. vrummmmm.. vrumm....</string>
 
     <string name="still_music_play">PLAY MUSIC</string>
