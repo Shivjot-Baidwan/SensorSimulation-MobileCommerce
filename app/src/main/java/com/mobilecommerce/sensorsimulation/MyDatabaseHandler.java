@@ -19,12 +19,11 @@ import java.util.List;
 public class MyDatabaseHandler extends SQLiteOpenHelper {
 
     private static final int databaseVersion = 1;
-    private static final String databaseName = "databaseForUserMovementTest5";
+    private static final String databaseName = "databaseForUserMovementTest15";
     private static final String tableForUserMovement = "movementTest";
 
     public static final String columnId = "Id";
     public static final String columnStartTime = "startTime";
-    public static final String columnStartTime2 = "startTime2";
     public static final String columnActivityType = "activityType";
 
     private static String records[][]  = new String[100][2];
@@ -51,7 +50,8 @@ public class MyDatabaseHandler extends SQLiteOpenHelper {
 
     public void createDatabasetable(){
         SQLiteDatabase database = this.getWritableDatabase();
-        String CREATE_USER_MOVEMENT_TABLE_QUERY = "CREATE TABLE "+tableForUserMovement+"("+columnId+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+columnActivityType+" TEXT, "+ columnStartTime2+ " DATETIME DEFAULT CURRENT_TIMESTAMP"+")";
+        //String CREATE_USER_MOVEMENT_TABLE_QUERY = "CREATE TABLE "+tableForUserMovement+"("+columnId+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+columnActivityType+" TEXT, "+ columnStartTime2+ " DATETIME DEFAULT CURRENT_TIMESTAMP"+")";
+        String CREATE_USER_MOVEMENT_TABLE_QUERY = "CREATE TABLE "+tableForUserMovement+"("+columnId+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+columnStartTime+" LONG, "+columnActivityType+" TEXT)";
         database.execSQL(CREATE_USER_MOVEMENT_TABLE_QUERY);
         database.close();
     }
@@ -65,7 +65,7 @@ public class MyDatabaseHandler extends SQLiteOpenHelper {
             //SQLiteDatabase database = context.openOrCreateDatabase(databaseName, Context.MODE_PRIVATE, null);
             ContentValues values = new ContentValues();
             //values.put(columnId, UserMovementDatabase.getId());
-            //values.put(columnStartTime, datetime());
+            values.put(columnStartTime, userMovementDatabase.getStartTime());
             values.put(columnActivityType, userMovementDatabase.getActivityType());
 
             database.insert(tableForUserMovement, null, values);
@@ -82,20 +82,23 @@ public class MyDatabaseHandler extends SQLiteOpenHelper {
 
     public List<UserMovementDatabase> viewAllRecords()
     {
+        int a=1;
         List<UserMovementDatabase> userMovementDatabaseList = new ArrayList<UserMovementDatabase>();
         //int identifierToTrackRecordsArray=0;
-        String select_query = "SELECT * FROM "+tableForUserMovement;
+        String select_query = "SELECT * FROM "+tableForUserMovement+" ORDER BY "+columnId+" DESC LIMIT 1";
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery(select_query, null);
         if(cursor.moveToFirst()){
             while(cursor.isAfterLast()==false){
+                Log.d("VIEWING: ","ENTERED TIME "+a);
+                a++;
                 UserMovementDatabase userMovementDatabase = new UserMovementDatabase();
 
-                String startTime = cursor.getString(cursor.getColumnIndex(columnStartTime2));
+                long startTime = cursor.getLong(cursor.getColumnIndex(columnStartTime));
                 String activityType = cursor.getString(cursor.getColumnIndex(columnActivityType));
 
-                userMovementDatabase.setActivityType(startTime);
-                userMovementDatabase.setStartTime(activityType);
+                userMovementDatabase.setStartTime(startTime);
+                userMovementDatabase.setActivityType(activityType);
 
                 userMovementDatabaseList.add(userMovementDatabase);
 

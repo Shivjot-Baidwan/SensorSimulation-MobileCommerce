@@ -6,6 +6,7 @@ Authors: Venus Pathak - 7972526
 package com.mobilecommerce.sensorsimulation;
 
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -49,13 +50,18 @@ public class MainActivity extends AppCompatActivity
     public enum FragmentToLoad{APP_IN_VEHICLE, APP_RUNNING, APP_STILL, APP_WALKING, APP_MAP}
     public Typeface typeface;
 
+    public static long lastTimeDatabase=0;
+    public static String lastActivityTypeDatabase;
 
+    private static Context context = null;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_welcome_screen);
+
+        context = getApplicationContext();
 
         MyDatabaseHandler myDatabaseHandler = new MyDatabaseHandler(this, null, null, 1);
         myDatabaseHandler.createDatabasetable();
@@ -126,5 +132,27 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public void showActivityToast(String activityType, String lastActivityTypeDatabase, long durationOfLastActivity){
+        String textToBeShownInToast="";
+        if(lastActivityTypeDatabase.equals("STILL")){
+            textToBeShownInToast = "remained still";
+        }else if (lastActivityTypeDatabase.equals("RUNNING")){
+            textToBeShownInToast = "ran";
+        }else if (lastActivityTypeDatabase.equals("IN_VEHICLE")){
+            textToBeShownInToast = "were in vehicle";
+        }else if (lastActivityTypeDatabase.equals("WALKING")){
+            textToBeShownInToast = "were walking";
+        }
+
+        if(activityType.equals(lastActivityTypeDatabase)){
+            // DO NOTHING
+        }else{
+            CharSequence text = "Hello Buddy. You "+textToBeShownInToast+" for "+durationOfLastActivity;
+            int duration = Toast.LENGTH_LONG;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
+    }
 
 }

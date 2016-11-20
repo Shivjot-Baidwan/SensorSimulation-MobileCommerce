@@ -4,9 +4,7 @@ Authors: Venus Pathak - 7972526
  */
 package com.mobilecommerce.sensorsimulation;
 
-import android.*;
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.location.Location;
@@ -16,15 +14,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -38,11 +33,10 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-import java.util.Calendar;
 import java.util.List;
-
-import static android.R.attr.typeface;
+import static com.mobilecommerce.sensorsimulation.MainActivity.lastActivityTypeDatabase;
+import static com.mobilecommerce.sensorsimulation.MainActivity.lastTimeDatabase;
+import static java.lang.Math.abs;
 
 public class StillActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
@@ -59,47 +53,39 @@ public class StillActivity extends AppCompatActivity implements OnMapReadyCallba
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     public SupportMapFragment mapFragment;
 
-    MyDatabaseHandler myDatabaseHandler = new MyDatabaseHandler(this, null, null, 1);
+    private String activityTypeToBeEnteredIntoDatabaseStill = "STILL";
+    private long timeToBeEnteredIntoDatabaseStill=0;
+    private long timeDifferenceStill=0;
+    MyDatabaseHandler myDatabaseHandlerStill = new MyDatabaseHandler(this, null, null, 1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_still);
-        //MainActivity mainActivity = new MainActivity();
 
-        List<UserMovementDatabase> userMovementDatabaseList = myDatabaseHandler.viewAllRecords();
         //for(int i=0; i<userMovementDatabaseList.size(); i++) {
         //    Log.d("RECORD 0 column ", userMovementDatabaseList[i].get(0).toString());
         //    Log.d("RECORD 1 column ", userMovementDatabaseList.get(1).toString());
         //}
 
-        for (UserMovementDatabase userMovementDatabase : userMovementDatabaseList) {
-            userMovementDatabase.getStartTime();
-            userMovementDatabase.getActivityType();
-            Log.d("RECORD 0 ", userMovementDatabase.getStartTime());
-            Log.d("RECORD 1 ", userMovementDatabase.getActivityType());
-        }
+        //final Calendar calendar = Calendar.getInstance();
+        //String time = android.text.format.DateFormat.getTimeFormat(this).format(calendar.getTime());
+        //myDatabaseHandler.addUserMovement(new UserMovementDatabase(time, "STILL"), this);
 
-        final Calendar calendar = Calendar.getInstance();
-        String time = android.text.format.DateFormat.getTimeFormat(this).format(calendar.getTime());
-        myDatabaseHandler.addUserMovement(new UserMovementDatabase(time, "STILL"), this);
+        // HANDLING DATABASE
+        handlingDatabase();
 
+        // HANDLING GOOGLE MAPS
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragment);
         mapFragment.getMapAsync(this);
 
+        // SETTING FONT
         Typeface typeface2 = Typeface.createFromAsset(getAssets(), "fonts/font1.ttf");
         stillScreenMessage = (TextView) findViewById(R.id.stillScreenTextView);
-        //mainActivity.stillScreenMessage = (TextView) findViewById(R.id.stillScreenTextView);
         stillScreenMessage.setTypeface(typeface2);
 
-
-        playButton = (ImageButton) findViewById(R.id.playButtonRunning);
-        pauseButton = (ImageButton) findViewById(R.id.pauseButton);
-        stopButton = (ImageButton) findViewById(R.id.stopButton);
-        nextSongButton = (ImageButton) findViewById(R.id.nextSongButton);
-        previousSongButton = (ImageButton) findViewById(R.id.previousSongButton);
-
+        // LOADING SONGS IN AN ARRAY
         load_Songs();
     }
 
@@ -150,14 +136,10 @@ public class StillActivity extends AppCompatActivity implements OnMapReadyCallba
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
 
         }
-
-
         // Add a marker in Sydney and move the camera
         //LatLng sydney = new LatLng(-34, 151);
         //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
-
     }
 
     @Override
@@ -202,10 +184,6 @@ public class StillActivity extends AppCompatActivity implements OnMapReadyCallba
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     android.Manifest.permission.ACCESS_FINE_LOCATION)) {
 
-                // Show an expanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-
                 //Prompt the user once explanation has been shown
                 ActivityCompat.requestPermissions(this,
                         new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
@@ -246,15 +224,37 @@ public class StillActivity extends AppCompatActivity implements OnMapReadyCallba
 
                 } else {
 
-                    // Permission denied, Disable the functionality that depends on this permission.
-                    //Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show();
+                    // Permission denied
                 }
                 return;
             }
-
-            // other 'case' lines to check for other permissions this app might request.
-            //You can add here other case statements according to your requirement.
         }
+    }
+
+    public void handlingDatabase(){
+        timeToBeEnteredIntoDatabaseStill = ((System.currentTimeMillis()) / 1000);
+
+        List<UserMovementDatabase> userMovementDatabaseList = myDatabaseHandlerStill.viewAllRecords();
+
+        // GETTING THE START TIME AND ACTIVITY TYPE FROM DATABASE
+        Log.d("SIZE OF THE VIEW ALL: ", String.valueOf(userMovementDatabaseList.size()));
+        for (UserMovementDatabase userMovementDatabase : userMovementDatabaseList) {
+            lastTimeDatabase = userMovementDatabase.getStartTime();
+            lastActivityTypeDatabase = userMovementDatabase.getActivityType();
+            Log.d("RECORD TIME ", String.valueOf(userMovementDatabase.getStartTime()));
+            Log.d("RECORD ACTIVITY TYPE ", userMovementDatabase.getActivityType());
+        }
+
+        if(userMovementDatabaseList.size()!=0) {
+            // CALCULATING THE CURRENT TIME AND DURATION OF LAST ACTIVITY
+            timeDifferenceStill = timeToBeEnteredIntoDatabaseStill - lastTimeDatabase;
+
+            // SENDING THE DATA TO BE DISPLAYED IN THE TOAST
+            MainActivity mainActivity = new MainActivity();
+            mainActivity.showActivityToast("STILL", lastActivityTypeDatabase, timeDifferenceStill);
+        }
+        // SAVING CURRENT TIME IN FORM OF SECONDS IN DATABASE
+        myDatabaseHandlerStill.addUserMovement(new UserMovementDatabase(timeToBeEnteredIntoDatabaseStill, activityTypeToBeEnteredIntoDatabaseStill), this);
     }
 
     public void playMusic(View view) {

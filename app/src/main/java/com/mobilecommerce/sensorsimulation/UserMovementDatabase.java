@@ -7,16 +7,17 @@ package com.mobilecommerce.sensorsimulation;
 
 public class UserMovementDatabase {
 
-    private static String startTime, activityType;
+    private static long startTime;
+    private static String activityType;
 
     public UserMovementDatabase(){} // constructor with no arguments
 
-   public UserMovementDatabase(String startTime, String activityType){
+   public UserMovementDatabase(long startTime, String activityType){
        this.startTime = startTime;
         this.activityType = activityType;
     }
 
-    public String getStartTime() {
+    public long getStartTime() {
         return startTime;
     }
 
@@ -24,7 +25,7 @@ public class UserMovementDatabase {
         return activityType;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(long startTime) {
         this.startTime = startTime;
     }
 

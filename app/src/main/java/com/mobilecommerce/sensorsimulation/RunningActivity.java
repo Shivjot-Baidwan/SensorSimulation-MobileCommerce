@@ -13,29 +13,37 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.List;
+
+import static com.mobilecommerce.sensorsimulation.MainActivity.lastActivityTypeDatabase;
+import static com.mobilecommerce.sensorsimulation.MainActivity.lastTimeDatabase;
+
 public class RunningActivity extends AppCompatActivity {
 
-    private ImageButton playButton, pauseButton, stopButton, nextSongButton, previousSongButton;
     private Integer[] songs = new Integer[6];
     private static int position = 0;
     private TextView runningScreenMessage;
+
+    private String activityTypeToBeEnteredIntoDatabaseRunning = "RUNNING";
+    private long timeToBeEnteredIntoDatabaseRunning=0;
+    private long timeDifferenceRunning=0;
+    MyDatabaseHandler myDatabaseHandlerRunning = new MyDatabaseHandler(this, null, null, 1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_running);
 
-        //createAndAddAFragment();
-        load_Songs();
+        // HANDLING DATABASE
+        handlingDatabase();
+
+        // SETTING FONT
         Typeface typeface4 = Typeface.createFromAsset(getAssets(), "fonts/font1.ttf");
         runningScreenMessage = (TextView) findViewById(R.id.runningScreenTextView);
         runningScreenMessage.setTypeface(typeface4);
 
-        playButton = (ImageButton) findViewById(R.id.playButtonRunning);
-        pauseButton = (ImageButton) findViewById(R.id.pauseButtonRunning);
-        stopButton = (ImageButton) findViewById(R.id.stopButtonRunning);
-        nextSongButton = (ImageButton) findViewById(R.id.nextSongButton);
-        previousSongButton = (ImageButton) findViewById(R.id.previousSongButtonRunning);
+        // LOADING SONGS IN AN ARRAY
+        load_Songs();
 
     }
 
@@ -44,22 +52,31 @@ public class RunningActivity extends AppCompatActivity {
         return true;
     }
 
-    private void createAndAddAFragment() {
 
-        Intent intent = getIntent();// this is used to grab intent and fragment so that it launches
-        MainActivity.FragmentToLoad fragmentToLoad = (MainActivity.FragmentToLoad)
-                intent.getSerializableExtra(MainActivity.runningFragmentToLoad);
+    public void handlingDatabase(){
+        timeToBeEnteredIntoDatabaseRunning = ((System.currentTimeMillis()) / 1000);
 
-        //grabs our fragment manager and fragment transaction so that we can add the edit or view fragment dynamically.
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        List<UserMovementDatabase> userMovementDatabaseList = myDatabaseHandlerRunning.viewAllRecords();
 
-        RunningScreenFragment runningScreenFragment = new RunningScreenFragment();
-        setTitle(R.string.running_screen_title);
-        fragmentTransaction.add
-                (R.id.activity_running, runningScreenFragment, "RUNNING_SCREEN_FRAGMENT");
+        // GETTING THE START TIME AND ACTIVITY TYPE FROM DATABASE
+        Log.d("SIZE OF THE VIEW ALL: ", String.valueOf(userMovementDatabaseList.size()));
+        for (UserMovementDatabase userMovementDatabase : userMovementDatabaseList) {
+            lastTimeDatabase = userMovementDatabase.getStartTime();
+            lastActivityTypeDatabase = userMovementDatabase.getActivityType();
+            Log.d("RECORD TIME ", String.valueOf(userMovementDatabase.getStartTime()));
+            Log.d("RECORD ACTIVITY TYPE ", userMovementDatabase.getActivityType());
+        }
 
-        fragmentTransaction.commit();// using commit here to make sure that everything we did above actually happens.
+        if(userMovementDatabaseList.size()!=0) {
+            // CALCULATING THE CURRENT TIME AND DURATION OF LAST ACTIVITY
+            timeDifferenceRunning = timeToBeEnteredIntoDatabaseRunning - lastTimeDatabase;
+
+            // SENDING THE DATA TO BE DISPLAYED IN THE TOAST
+            MainActivity mainActivity = new MainActivity();
+            mainActivity.showActivityToast("RUNNING", lastActivityTypeDatabase, timeDifferenceRunning);
+        }
+        // SAVING CURRENT TIME IN FORM OF SECONDS IN DATABASE
+        myDatabaseHandlerRunning.addUserMovement(new UserMovementDatabase(timeToBeEnteredIntoDatabaseRunning, activityTypeToBeEnteredIntoDatabaseRunning), this);
     }
 
     public void load_Songs() {

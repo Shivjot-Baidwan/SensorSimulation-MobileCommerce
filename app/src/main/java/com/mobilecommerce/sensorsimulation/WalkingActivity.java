@@ -35,12 +35,15 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.List;
+
+import static com.mobilecommerce.sensorsimulation.MainActivity.lastActivityTypeDatabase;
+import static com.mobilecommerce.sensorsimulation.MainActivity.lastTimeDatabase;
+
 public class WalkingActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     private static int position = 0;
 
-    private ImageButton playButton, pauseButton, stopButton, nextSongButton, previousSongButton;
-    private MediaPlayer soundPlayer;
     private Integer[] songs = new Integer[6];
     private TextView walkingScreenMessage;
     private GoogleMap mMap;
@@ -51,24 +54,31 @@ public class WalkingActivity extends AppCompatActivity implements OnMapReadyCall
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     public SupportMapFragment mapFragment;
 
+    private String activityTypeToBeEnteredIntoDatabaseWalking = "WALKING";
+    private long timeToBeEnteredIntoDatabaseWalking=0;
+    private long timeDifferenceWalking=0;
+    MyDatabaseHandler myDatabaseHandlerWalking = new MyDatabaseHandler(this, null, null, 1);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_walking);
 
+        // HANDLING DATABASE
+        handlingDatabase();
+
+        // HANDLING GOOGLE MAPS
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragmentWalking);
         mapFragment.getMapAsync(this);
 
+        // SETTING FONT
         Typeface typeface3 = Typeface.createFromAsset(getAssets(), "fonts/font1.ttf");
         walkingScreenMessage = (TextView) findViewById(R.id.walkingScreenTextView);
         walkingScreenMessage.setTypeface(typeface3);
+
+        // LOADING SONGS IN AN ARRAY
         load_Songs();
-        playButton = (ImageButton) findViewById(R.id.playButtonWalking);
-        pauseButton = (ImageButton) findViewById(R.id.pauseButtonWalking);
-        stopButton = (ImageButton) findViewById(R.id.stopButtonWalking);
-        nextSongButton = (ImageButton) findViewById(R.id.nextSongButtonWalking);
-        previousSongButton = (ImageButton) findViewById(R.id.previousSongButtonWalking);
     }
 
     @Override
@@ -221,6 +231,33 @@ public class WalkingActivity extends AppCompatActivity implements OnMapReadyCall
             // other 'case' lines to check for other permissions this app might request.
             //You can add here other case statements according to your requirement.
         }
+    }
+
+
+    public void handlingDatabase(){
+        timeToBeEnteredIntoDatabaseWalking = ((System.currentTimeMillis()) / 1000);
+
+        List<UserMovementDatabase> userMovementDatabaseList = myDatabaseHandlerWalking.viewAllRecords();
+
+        // GETTING THE START TIME AND ACTIVITY TYPE FROM DATABASE
+        Log.d("SIZE OF THE VIEW ALL: ", String.valueOf(userMovementDatabaseList.size()));
+        for (UserMovementDatabase userMovementDatabase : userMovementDatabaseList) {
+            lastTimeDatabase = userMovementDatabase.getStartTime();
+            lastActivityTypeDatabase = userMovementDatabase.getActivityType();
+            Log.d("RECORD TIME ", String.valueOf(userMovementDatabase.getStartTime()));
+            Log.d("RECORD ACTIVITY TYPE ", userMovementDatabase.getActivityType());
+        }
+
+        if(userMovementDatabaseList.size()!=0) {
+            // CALCULATING THE CURRENT TIME AND DURATION OF LAST ACTIVITY
+            timeDifferenceWalking = timeToBeEnteredIntoDatabaseWalking - lastTimeDatabase;
+
+            // SENDING THE DATA TO BE DISPLAYED IN THE TOAST
+            MainActivity mainActivity = new MainActivity();
+            mainActivity.showActivityToast("WALKING", lastActivityTypeDatabase, timeDifferenceWalking);
+        }
+        // SAVING CURRENT TIME IN FORM OF SECONDS IN DATABASE
+        myDatabaseHandlerWalking.addUserMovement(new UserMovementDatabase(timeToBeEnteredIntoDatabaseWalking, activityTypeToBeEnteredIntoDatabaseWalking), this);
     }
 
 
