@@ -6,23 +6,12 @@
     android:layout_height="match_parent"
     tools:context="com.mobilecommerce.sensorsimulation.WalkingActivity">
 
-
-    <fragment
-        class="com.mobilecommerce.sensorsimulation.MapFragmentTest"
-        android:layout_width="800dp"
-        android:id="@+id/fragment2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_height="350dp"
-        android:layout_alignEnd="@+id/nextSongButton" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="223dp"
         android:id="@+id/walkingScreenTextView"
         android:text="@string/walking_screen_message"
         android:fontFamily="cursive"
-        android:layout_below="@+id/fragment2"
         android:layout_alignParentStart="true"
         android:textSize="39sp"
         android:textStyle="normal|bold"
@@ -54,7 +43,6 @@
         android:id="@+id/walkingImageView"
         android:src="@drawable/walkingimage"
         android:layout_gravity="center|bottom"
-        android:layout_below="@+id/fragment2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="153dp" />
 
@@ -88,5 +76,16 @@
         android:onClick="playMusic"
         android:layout_alignTop="@+id/stopButtonWalking"
         android:layout_toStartOf="@+id/walkingImageView" />
+
+
+    <fragment
+        tools:context="com.mobilecommerce.sensorsimulation.WalkingActivity"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="850dp"
+        android:id="@+id/fragmentWalking"
+        android:layout_height="400dp"
+        android:layout_below="@+id/nextSongButtonWalking"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="51dp" />
 
 </RelativeLayout>

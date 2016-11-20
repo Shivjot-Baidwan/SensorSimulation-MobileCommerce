@@ -12,10 +12,18 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 import com.google.android.gms.location.ActivityRecognitionResult;
 import com.google.android.gms.location.DetectedActivity;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 
 public class ActivityRecognizedService extends IntentService {
+
+    //MyDatabaseHandler myDatabaseHandler = new MyDatabaseHandler(this, null, null, 1);
 
     public ActivityRecognizedService(){
         super("ActivityRecognizedService");
@@ -73,6 +81,22 @@ public class ActivityRecognizedService extends IntentService {
 
                 case DetectedActivity.STILL: {
                     Log.e( "ActivityRecogition12", "Still: " + activity.getConfidence() );
+                    // Retrieve the entry with the highest id number from the database
+                    // Save entry for this activity
+
+
+
+                    final Calendar calendar = Calendar.getInstance();
+                    String time = android.text.format.DateFormat.getTimeFormat(this).format(calendar.getTime());
+
+                    //UserMovementDatabase userMovementDatabase = new UserMovementDatabase(time,"STILL");
+
+                    //myDatabaseHandler.addUserMovement(new UserMovementDatabase(time, "STILL"), this);
+                    //myDatabaseHandler.addUserMovement(userMovementDatabase, this);
+
+                    //myDatabaseHandler.viewAllRecords();
+                    //myDatabaseHandler.printUserMovementRecords();
+
                     if(activity.getConfidence() >= 35) {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
                         builder.setContentText("Are you still?");
@@ -90,7 +114,7 @@ public class ActivityRecognizedService extends IntentService {
 
                 case DetectedActivity.WALKING: {
                     Log.e( "ActivityRecogition", "Walking: " + activity.getConfidence() );
-                    if( activity.getConfidence() >= 10 ) {
+                    if( activity.getConfidence() >= 3 ) {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
                         builder.setContentText( "Are you walking?" );
                         builder.setSmallIcon( R.drawable.icon );
@@ -104,13 +128,11 @@ public class ActivityRecognizedService extends IntentService {
                     }
                     break;
                 }
-                case DetectedActivity.UNKNOWN: {
-                    Log.e( "ActivityRecogition", "Unknown: " + activity.getConfidence() );
-                    break;
-                }
-
 
             }
+
+            }
+
         }
     }
-}
+

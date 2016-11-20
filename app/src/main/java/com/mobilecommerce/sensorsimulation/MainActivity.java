@@ -7,6 +7,8 @@ package com.mobilecommerce.sensorsimulation;
 
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.icu.text.DateFormat;
@@ -30,7 +32,7 @@ import com.google.android.gms.location.LocationServices;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity
-        implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
+        implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     public static MediaPlayer soundPlayer;
 
@@ -49,11 +51,14 @@ public class MainActivity extends AppCompatActivity
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_welcome_screen);
 
+        MyDatabaseHandler myDatabaseHandler = new MyDatabaseHandler(this, null, null, 1);
+        myDatabaseHandler.createDatabasetable();
 
         typeface = Typeface.createFromAsset(getAssets(), "fonts/font1.ttf");
 
@@ -79,17 +84,6 @@ public class MainActivity extends AppCompatActivity
                 ((AnimationDrawable) animationImages.getBackground()).start();
             }
         });
-
-
-        /*
-        UserMovementDatabase userMovementDatabase = new UserMovementDatabase("time","WALKING");
-
-        MyDatabaseHandler myDatabaseHandler = new MyDatabaseHandler(this, null, null, 1);
-        myDatabaseHandler.addUserMovement(userMovementDatabase, this);
-
-        myDatabaseHandler.viewAllRecords();
-        myDatabaseHandler.printUserMovementRecords();
-        */
 
         //After Implementing the interfaces for GoogleApiClient, initializing the GoogleApiClient.
         //Also connecting to Google Play Services.
@@ -131,5 +125,6 @@ public class MainActivity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.menu_welcome,menu);
         return true;
     }
+
 
 }
