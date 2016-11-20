@@ -147,7 +147,12 @@ public class MainActivity extends AppCompatActivity
         if(activityType.equals(lastActivityTypeDatabase)){
             // DO NOTHING
         }else{
-            CharSequence text = "Hello Buddy. You "+textToBeShownInToast+" for "+durationOfLastActivity;
+            int seconds = ((int)durationOfLastActivity)%60;
+            int totalMinutes = ((int)durationOfLastActivity)/60;
+            int minutes = totalMinutes%60;
+            int hours = totalMinutes/60;
+
+            CharSequence text = "Hello Buddy. You "+textToBeShownInToast+" for "+hours+" hours, "+ minutes +" minutes, "+seconds+" seconds ";
             int duration = Toast.LENGTH_LONG;
 
             Toast toast = Toast.makeText(context, text, duration);
