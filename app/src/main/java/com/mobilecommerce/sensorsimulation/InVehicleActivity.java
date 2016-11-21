@@ -64,9 +64,14 @@ public class InVehicleActivity extends AppCompatActivity {
 
             // SENDING THE DATA TO BE DISPLAYED IN THE TOAST
             MainActivity mainActivity = new MainActivity();
-            mainActivity.showActivityToast("IN_VEHICLE", lastActivityTypeDatabase, timeDifferenceInVehicle);
+            mainActivity.showActivityToast(activityTypeToBeEnteredIntoDatabaseInVehicle, lastActivityTypeDatabase, timeDifferenceInVehicle);
         }
-        // SAVING CURRENT TIME IN FORM OF SECONDS IN DATABASE
-        myDatabaseHandlerInVehicle.addUserMovement(new UserMovementDatabase(timeToBeEnteredIntoDatabaseInVehicle, activityTypeToBeEnteredIntoDatabaseInVehicle), this);
+
+        if(activityTypeToBeEnteredIntoDatabaseInVehicle.equals(lastActivityTypeDatabase)) {
+            // DO NOTHING
+        }else {
+            // SAVING CURRENT TIME IN FORM OF SECONDS IN DATABASE
+            myDatabaseHandlerInVehicle.addUserMovement(new UserMovementDatabase(timeToBeEnteredIntoDatabaseInVehicle, activityTypeToBeEnteredIntoDatabaseInVehicle), this);
+        }
     }
 }

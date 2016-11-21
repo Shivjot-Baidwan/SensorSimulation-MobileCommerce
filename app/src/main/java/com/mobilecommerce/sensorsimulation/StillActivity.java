@@ -15,6 +15,7 @@ import static com.mobilecommerce.sensorsimulation.MainActivity.lastTimeDatabase;
 
 public class StillActivity extends AppCompatActivity {
     private TextView stillScreenMessage;
+
     private String activityTypeToBeEnteredIntoDatabaseStill = "STILL";
     private long timeToBeEnteredIntoDatabaseStill=0;
     private long timeDifferenceStill=0;
@@ -57,10 +58,15 @@ public class StillActivity extends AppCompatActivity {
 
             // SENDING THE DATA TO BE DISPLAYED IN THE TOAST
             MainActivity mainActivity = new MainActivity();
-            mainActivity.showActivityToast("STILL", lastActivityTypeDatabase, timeDifferenceStill);
+            mainActivity.showActivityToast(activityTypeToBeEnteredIntoDatabaseStill, lastActivityTypeDatabase, timeDifferenceStill);
         }
-        // SAVING CURRENT TIME IN FORM OF SECONDS IN DATABASE
-        myDatabaseHandlerStill.addUserMovement(new UserMovementDatabase(timeToBeEnteredIntoDatabaseStill, activityTypeToBeEnteredIntoDatabaseStill), this);
+        if(activityTypeToBeEnteredIntoDatabaseStill.equals(lastActivityTypeDatabase)) {
+            // DO NOTHING
+            Log.d("","");
+        }else{
+            // SAVING CURRENT TIME IN FORM OF SECONDS IN DATABASE
+            myDatabaseHandlerStill.addUserMovement(new UserMovementDatabase(timeToBeEnteredIntoDatabaseStill, activityTypeToBeEnteredIntoDatabaseStill), this);
+        }
     }
 
 }

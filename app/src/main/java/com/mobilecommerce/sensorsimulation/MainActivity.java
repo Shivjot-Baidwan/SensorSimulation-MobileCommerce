@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void showActivityToast(String activityType, String lastActivityTypeDatabase, long durationOfLastActivity){
+    public void showActivityToast(String currentActivityType, String lastActivityTypeDatabase, long durationOfLastActivity){
         String textToBeShownInToast="";
         if(lastActivityTypeDatabase.equals("STILL")){
             textToBeShownInToast = "remained still";
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity
             textToBeShownInToast = "were walking";
         }
 
-        if(activityType.equals(lastActivityTypeDatabase)){
+        if(currentActivityType.equals(lastActivityTypeDatabase)){
             // DO NOTHING
         }else{
             int seconds = ((int)durationOfLastActivity)%60;

@@ -73,10 +73,15 @@ public class RunningActivity extends AppCompatActivity {
 
             // SENDING THE DATA TO BE DISPLAYED IN THE TOAST
             MainActivity mainActivity = new MainActivity();
-            mainActivity.showActivityToast("RUNNING", lastActivityTypeDatabase, timeDifferenceRunning);
+            mainActivity.showActivityToast(activityTypeToBeEnteredIntoDatabaseRunning, lastActivityTypeDatabase, timeDifferenceRunning);
         }
-        // SAVING CURRENT TIME IN FORM OF SECONDS IN DATABASE
-        myDatabaseHandlerRunning.addUserMovement(new UserMovementDatabase(timeToBeEnteredIntoDatabaseRunning, activityTypeToBeEnteredIntoDatabaseRunning), this);
+
+        if(activityTypeToBeEnteredIntoDatabaseRunning.equals(lastActivityTypeDatabase)) {
+            // DO NOTHING
+        }else {
+            // SAVING CURRENT TIME IN FORM OF SECONDS IN DATABASE
+            myDatabaseHandlerRunning.addUserMovement(new UserMovementDatabase(timeToBeEnteredIntoDatabaseRunning, activityTypeToBeEnteredIntoDatabaseRunning), this);
+        }
     }
 
     public void load_Songs() {

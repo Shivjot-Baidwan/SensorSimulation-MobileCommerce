@@ -251,10 +251,15 @@ public class WalkingActivity extends AppCompatActivity implements OnMapReadyCall
 
             // SENDING THE DATA TO BE DISPLAYED IN THE TOAST
             MainActivity mainActivity = new MainActivity();
-            mainActivity.showActivityToast("WALKING", lastActivityTypeDatabase, timeDifferenceWalking);
+            mainActivity.showActivityToast(activityTypeToBeEnteredIntoDatabaseWalking, lastActivityTypeDatabase, timeDifferenceWalking);
         }
-        // SAVING CURRENT TIME IN FORM OF SECONDS IN DATABASE
-        myDatabaseHandlerWalking.addUserMovement(new UserMovementDatabase(timeToBeEnteredIntoDatabaseWalking, activityTypeToBeEnteredIntoDatabaseWalking), this);
+
+        if(activityTypeToBeEnteredIntoDatabaseWalking.equals(lastActivityTypeDatabase)) {
+            // DO NOTHING
+        }else {
+            // SAVING CURRENT TIME IN FORM OF SECONDS IN DATABASE
+            myDatabaseHandlerWalking.addUserMovement(new UserMovementDatabase(timeToBeEnteredIntoDatabaseWalking, activityTypeToBeEnteredIntoDatabaseWalking), this);
+        }
     }
 
 
