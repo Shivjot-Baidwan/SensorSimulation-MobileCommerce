@@ -59,7 +59,7 @@ public class MyDatabaseHandler extends SQLiteOpenHelper {
     public void truncateDB()
     {
         SQLiteDatabase database = this.getWritableDatabase();
-        database.execSQL("Drop table if exists databaseForUserMovement");
+        database.execSQL("Drop table if exists movementTest");
         database.close();
     }
 

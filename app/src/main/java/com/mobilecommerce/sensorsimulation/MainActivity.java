@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
+import android.location.Location;
 import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -24,7 +25,11 @@ import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.ActivityRecognition;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Marker;
 
 import java.util.Calendar;
 
@@ -34,6 +39,13 @@ public class MainActivity extends AppCompatActivity
     public static MediaPlayer soundPlayer;
 
     public static GoogleApiClient mApiClient;
+    public static GoogleMap mMap;
+    public static GoogleApiClient mGoogleApiClient;
+    public static LocationRequest mLocationRequest;
+    public static Location mlastLocation;
+    public static Marker mCurrLocationMarker;
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+    public static SupportMapFragment mapFragment;
 
     private ImageView animationImages;
     public TextView welcomeScreenMessage1,welcomeScreenMessage2;

@@ -34,8 +34,15 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.List;
 
+import static com.mobilecommerce.sensorsimulation.MainActivity.MY_PERMISSIONS_REQUEST_LOCATION;
 import static com.mobilecommerce.sensorsimulation.MainActivity.lastActivityTypeDatabase;
 import static com.mobilecommerce.sensorsimulation.MainActivity.lastTimeDatabase;
+import static com.mobilecommerce.sensorsimulation.MainActivity.mCurrLocationMarker;
+import static com.mobilecommerce.sensorsimulation.MainActivity.mGoogleApiClient;
+import static com.mobilecommerce.sensorsimulation.MainActivity.mLocationRequest;
+import static com.mobilecommerce.sensorsimulation.MainActivity.mMap;
+import static com.mobilecommerce.sensorsimulation.MainActivity.mapFragment;
+import static com.mobilecommerce.sensorsimulation.MainActivity.mlastLocation;
 
 public class WalkingActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
@@ -43,13 +50,6 @@ public class WalkingActivity extends AppCompatActivity implements OnMapReadyCall
 
     private Integer[] songs = new Integer[6];
     private TextView walkingScreenMessage;
-    private static GoogleMap mMap;
-    private static GoogleApiClient mGoogleApiClient;
-    private static LocationRequest mLocationRequest;
-    private static Location mlastLocation;
-    private static Marker mCurrLocationMarker;
-    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
-    public static SupportMapFragment mapFragment;
 
     private String activityTypeToBeEnteredIntoDatabaseWalking = "WALKING";
     private long timeToBeEnteredIntoDatabaseWalking=0;
