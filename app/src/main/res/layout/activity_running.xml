@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.mobilecommerce.sensorsimulation.RunningActivity">
 
-    <ImageView
-        android:id="@+id/runningImageView"
-        android:src="@drawable/runningimage"
-        android:layout_gravity="center|bottom"
-        android:layout_below="@+id/runningScreenTextView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="68dp"
-        android:layout_height="300dp"
-        android:layout_width="400dp" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="223dp"
@@ -78,5 +68,14 @@
         android:onClick="nextMusic"
         android:layout_alignTop="@+id/previousSongButtonRunning"
         android:layout_alignEnd="@+id/runningImageView" />
+
+    <ImageView
+        android:id="@+id/runningImageView"
+        android:src="@drawable/runningimage"
+        android:layout_gravity="center|bottom"
+        android:layout_height="300dp"
+        android:layout_width="400dp"
+        android:layout_below="@+id/runningScreenTextView"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

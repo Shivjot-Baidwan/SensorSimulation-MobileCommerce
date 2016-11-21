@@ -10,10 +10,10 @@
         android:id="@+id/drivingImageView"
         android:src="@drawable/drivingimage"
         android:layout_gravity="center|bottom"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
         android:layout_height="400dp"
-        android:layout_width="500dp" />
+        android:layout_width="500dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
         android:textAlignment="center"
         android:fontFamily="cursive"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="34dp" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="223dp" />
 
 </RelativeLayout>

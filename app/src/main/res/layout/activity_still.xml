@@ -7,31 +7,6 @@
     android:layout_height="match_parent"
     tools:context="com.mobilecommerce.sensorsimulation.StillActivity">
 
-    <!--android:textStyle="normal|bold"
-
-        -->
-
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_media_pause"
-        android:layout_marginLeft="24dp"
-        android:id="@+id/pauseButton"
-        android:onClick="pauseMusic"
-        android:layout_alignTop="@+id/previousSongButton"
-        android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:id="@+id/stillImageView"
-        android:src="@drawable/stillimage"
-        android:layout_gravity="center|bottom"
-        android:layout_below="@+id/fragment"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="68dp" />
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -40,68 +15,19 @@
         android:textSize="39sp"
         android:textAlignment="center"
         android:fontFamily="cursive"
-        android:layout_below="@+id/fragment"
-        android:layout_alignParentStart="true" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/cast_ic_mini_controller_stop"
-        android:layout_marginLeft="19dp"
-        android:id="@+id/stopButton"
-        android:onClick="stopMusic"
-        android:layout_alignBottom="@+id/pauseButton"
-        android:layout_toStartOf="@+id/pauseButton" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_media_play"
-        android:layout_marginLeft="18dp"
-        android:id="@+id/playButtonRunning"
-        android:onClick="playMusic"
-        android:layout_alignBottom="@+id/stopButton"
-        android:layout_toStartOf="@+id/stopButton" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_media_previous"
-        android:id="@+id/previousSongButton"
-        android:onClick="previousMusic"
-        android:layout_marginStart="22dp"
-        android:layout_alignTop="@+id/nextSongButton"
-        android:layout_toEndOf="@+id/pauseButton" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_media_next"
-        android:id="@+id/nextSongButton"
-        android:onClick="nextMusic"
-        android:layout_marginStart="21dp"
-        android:layout_below="@+id/stillScreenTextView"
-        android:layout_toEndOf="@+id/previousSongButton"
-        android:layout_marginTop="270dp" />
-
-    <Button
-        android:text="Navigation"
-        android:onClick="showNavigation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonForNavigation"
-        android:layout_below="@+id/pauseButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp" />
-
-    <fragment
-        tools:context="com.mobilecommerce.sensorsimulation.StillActivity"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="850dp"
-        android:id="@+id/fragment"
-        android:layout_height="400dp"
+        android:layout_marginTop="222dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="300dp"
+        android:id="@+id/stillImageView"
+        android:src="@drawable/stillimage"
+        android:layout_gravity="center|bottom"
+        android:layout_height="400dp"
+        android:layout_alignTop="@+id/stillScreenTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="105dp" />
 
 
 </RelativeLayout>

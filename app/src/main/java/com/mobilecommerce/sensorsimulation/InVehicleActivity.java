@@ -1,9 +1,10 @@
+/*
+Authors: Venus Pathak - 7972526
+         Shivjot Baidwan - 8028412
+*/
 package com.mobilecommerce.sensorsimulation;
 
-import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
