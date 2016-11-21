@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity
     public static GoogleApiClient mApiClient;
 
     private ImageView animationImages;
-    public TextView welcomeScreenMessage1,welcomeScreenMessage2,drivingScreenMessage;
+    public TextView welcomeScreenMessage1,welcomeScreenMessage2;
 
     public Typeface typeface;
 
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity
         Log.d("Success: ", "Connected to GoogleAPIClient");
         Intent intent = new Intent(this, ActivityRecognizedService.class);
         PendingIntent pendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(mApiClient, 3000, pendingIntent);
+        ActivityRecognition.ActivityRecognitionApi.requestActivityUpdates(mApiClient, 1000, pendingIntent);
     }
 
     //implementing the required interfaces for GoogleApiClient

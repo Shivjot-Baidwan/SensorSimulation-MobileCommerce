@@ -64,7 +64,7 @@ public class ActivityRecognizedService extends IntentService {
 
                 case DetectedActivity.RUNNING: {
                     Log.e( "ActivityRecogition", "Running: " + activity.getConfidence() );
-                    if(activity.getConfidence() >= 10) {
+                    if(activity.getConfidence() >= 15) {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
                         builder.setContentText("Are you Running?");
                         builder.setSmallIcon(R.drawable.icon);
@@ -80,7 +80,7 @@ public class ActivityRecognizedService extends IntentService {
                 }
 
                 case DetectedActivity.STILL: {
-                    Log.e( "ActivityRecogition12", "Still: " + activity.getConfidence() );
+                    Log.e( "ActivityRecogition", "Still: " + activity.getConfidence() );
                     // Retrieve the entry with the highest id number from the database
                     // Save entry for this activity
 
@@ -114,7 +114,7 @@ public class ActivityRecognizedService extends IntentService {
 
                 case DetectedActivity.WALKING: {
                     Log.e( "ActivityRecogition", "Walking: " + activity.getConfidence() );
-                    if( activity.getConfidence() >= 3 ) {
+                    if( activity.getConfidence() >= 6 ) {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
                         builder.setContentText( "Are you walking?" );
                         builder.setSmallIcon( R.drawable.icon );

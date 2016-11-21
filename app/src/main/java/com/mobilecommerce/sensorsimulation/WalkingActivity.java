@@ -157,7 +157,7 @@ public class WalkingActivity extends AppCompatActivity implements OnMapReadyCall
         mCurrLocationMarker = mMap.addMarker(markerOptions);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(80));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(45));
 
         if(mGoogleApiClient != null) {
             checkLocationPermission();
