@@ -19,7 +19,7 @@ import java.util.List;
 public class MyDatabaseHandler extends SQLiteOpenHelper {
 
     private static final int databaseVersion = 1;
-    private static final String databaseName = "databaseForUserMovementTest48";
+    private static final String databaseName = "databaseForUserMovement";
     private static final String tableForUserMovement = "movementTest";
 
     public static final String columnId = "Id";
@@ -53,6 +53,13 @@ public class MyDatabaseHandler extends SQLiteOpenHelper {
         //String CREATE_USER_MOVEMENT_TABLE_QUERY = "CREATE TABLE "+tableForUserMovement+"("+columnId+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+columnActivityType+" TEXT, "+ columnStartTime2+ " DATETIME DEFAULT CURRENT_TIMESTAMP"+")";
         String CREATE_USER_MOVEMENT_TABLE_QUERY = "CREATE TABLE "+tableForUserMovement+"("+columnId+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+columnStartTime+" LONG, "+columnActivityType+" TEXT)";
         database.execSQL(CREATE_USER_MOVEMENT_TABLE_QUERY);
+        database.close();
+    }
+
+    public void truncateDB()
+    {
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.execSQL("Drop table if exists databaseForUserMovement");
         database.close();
     }
 

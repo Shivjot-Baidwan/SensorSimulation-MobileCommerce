@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity
         context = getApplicationContext();
 
         MyDatabaseHandler myDatabaseHandler = new MyDatabaseHandler(this, null, null, 1);
+        myDatabaseHandler.truncateDB();
         myDatabaseHandler.createDatabasetable();
 
         typeface = Typeface.createFromAsset(getAssets(), "fonts/font1.ttf");

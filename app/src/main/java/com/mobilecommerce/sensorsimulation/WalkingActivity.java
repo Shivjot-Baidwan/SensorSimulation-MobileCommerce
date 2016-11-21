@@ -43,13 +43,13 @@ public class WalkingActivity extends AppCompatActivity implements OnMapReadyCall
 
     private Integer[] songs = new Integer[6];
     private TextView walkingScreenMessage;
-    private GoogleMap mMap;
-    private GoogleApiClient mGoogleApiClient;
-    private LocationRequest mLocationRequest;
-    private Location mlastLocation;
-    private Marker mCurrLocationMarker;
+    private static GoogleMap mMap;
+    private static GoogleApiClient mGoogleApiClient;
+    private static LocationRequest mLocationRequest;
+    private static Location mlastLocation;
+    private static Marker mCurrLocationMarker;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
-    public SupportMapFragment mapFragment;
+    public static SupportMapFragment mapFragment;
 
     private String activityTypeToBeEnteredIntoDatabaseWalking = "WALKING";
     private long timeToBeEnteredIntoDatabaseWalking=0;
@@ -157,7 +157,7 @@ public class WalkingActivity extends AppCompatActivity implements OnMapReadyCall
         mCurrLocationMarker = mMap.addMarker(markerOptions);
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(45));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(25));
 
         if(mGoogleApiClient != null) {
             checkLocationPermission();
