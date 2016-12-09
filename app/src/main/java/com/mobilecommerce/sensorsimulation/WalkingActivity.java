@@ -34,15 +34,15 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.List;
 
-import static com.mobilecommerce.sensorsimulation.MainActivity.MY_PERMISSIONS_REQUEST_LOCATION;
+//import static com.mobilecommerce.sensorsimulation.MainActivity.MY_PERMISSIONS_REQUEST_LOCATION;
 import static com.mobilecommerce.sensorsimulation.MainActivity.lastActivityTypeDatabase;
 import static com.mobilecommerce.sensorsimulation.MainActivity.lastTimeDatabase;
-import static com.mobilecommerce.sensorsimulation.MainActivity.mCurrLocationMarker;
-import static com.mobilecommerce.sensorsimulation.MainActivity.mGoogleApiClient;
-import static com.mobilecommerce.sensorsimulation.MainActivity.mLocationRequest;
-import static com.mobilecommerce.sensorsimulation.MainActivity.mMap;
-import static com.mobilecommerce.sensorsimulation.MainActivity.mapFragment;
-import static com.mobilecommerce.sensorsimulation.MainActivity.mlastLocation;
+//import static com.mobilecommerce.sensorsimulation.MainActivity.mCurrLocationMarker;
+//import static com.mobilecommerce.sensorsimulation.MainActivity.mGoogleApiClient;
+//import static com.mobilecommerce.sensorsimulation.MainActivity.mLocationRequest;
+//import static com.mobilecommerce.sensorsimulation.MainActivity.mMap;
+//import static com.mobilecommerce.sensorsimulation.MainActivity.mapFragment;
+//import static com.mobilecommerce.sensorsimulation.MainActivity.mlastLocation;
 
 public class WalkingActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
@@ -54,6 +54,14 @@ public class WalkingActivity extends AppCompatActivity implements OnMapReadyCall
     private String activityTypeToBeEnteredIntoDatabaseWalking = "WALKING";
     private long timeToBeEnteredIntoDatabaseWalking=0;
     private long timeDifferenceWalking=0;
+
+    public  GoogleMap mMap;
+    public  GoogleApiClient mGoogleApiClient;
+    public  LocationRequest mLocationRequest;
+    public  Location mlastLocation;
+    public  Marker mCurrLocationMarker;
+    public  final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+    public  SupportMapFragment mapFragment;
     MyDatabaseHandler myDatabaseHandlerWalking = new MyDatabaseHandler(this, null, null, 1);
 
     @Override

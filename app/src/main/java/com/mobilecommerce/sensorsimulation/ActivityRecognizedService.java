@@ -97,7 +97,7 @@ public class ActivityRecognizedService extends IntentService {
                     //myDatabaseHandler.viewAllRecords();
                     //myDatabaseHandler.printUserMovementRecords();
 
-                    if(activity.getConfidence() >= 35) {
+                    if(activity.getConfidence() >= 25) {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
                         builder.setContentText("Are you still?");
                         builder.setSmallIcon(R.drawable.icon);

@@ -39,14 +39,14 @@ public class MainActivity extends AppCompatActivity
     public static MediaPlayer soundPlayer;
 
     public static GoogleApiClient mApiClient;
-    public static GoogleMap mMap;
+    /*public static GoogleMap mMap;
     public static GoogleApiClient mGoogleApiClient;
     public static LocationRequest mLocationRequest;
     public static Location mlastLocation;
     public static Marker mCurrLocationMarker;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     public static SupportMapFragment mapFragment;
-
+*/
     private ImageView animationImages;
     public TextView welcomeScreenMessage1,welcomeScreenMessage2;
 
